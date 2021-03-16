@@ -22,7 +22,7 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
       '@store': path.resolve(__dirname, './src/store'),
       '@router': path.resolve(__dirname, './src/router'),
-      '@conponents': path.resolve(__dirname, './src/components'),
+      '@components': path.resolve(__dirname, './src/components'),
       '@views': path.resolve(__dirname, './src/views')
     }
   },

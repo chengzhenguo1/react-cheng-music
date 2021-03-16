@@ -1,0 +1,20 @@
+@import '../../styles/variables.less';
+
+.layout {
+    min-width: 1200px;
+    min-height: 700px;
+
+    .middle {
+        display: flex;
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+        margin-top: @header-height;
+        margin-bottom: @footer-height;
+
+        .content {
+            flex: 1;
+            height: calc(100vh - @header-height);
+        }
+    }
+}
