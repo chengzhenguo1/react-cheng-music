@@ -1,8 +1,21 @@
-import Home from '@views/Home/index'
+
 
 const routes = [
     {
+        path: '/'
         component: Home
+    },
+    {
+
+    },
+    {
+
+    },
+    {
+
+    },
+    {
+
     }
 ]
 

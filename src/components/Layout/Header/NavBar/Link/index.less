@@ -1,0 +1,18 @@
+.git-link {
+    position: relative;
+    padding: 0 20px;
+    height: 100%;
+    color: #000;
+    font-size: 20px;
+
+    &::before {
+        content: '';
+        position: absolute;
+        left: 0px;
+        top: 50%;
+        transform: translate(0, -50%);
+        height: 20px;
+        width: 1px;
+        background-color: #fff;
+    }
+}
