@@ -2,4 +2,21 @@
 
 .sider {
     width: @sider-width;
+    text-decoration: none;
+
+    .ant-menu-item {
+        a {
+            color: #000;
+        }
+
+        &.ant-menu-item-selected:nth-child(-n+5) {
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        &.ant-menu-item-selected, &:hover {
+            background-color: rgba(0, 0, 0, .1);
+        }
+    }
+
 }
