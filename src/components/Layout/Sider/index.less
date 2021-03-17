@@ -1,8 +1,9 @@
-
-.sider {
+.sider-bar {
+    position: fixed;
+    top: var(--header-height);
+    bottom: var(--footer-height);
     width: var(--sider-width);
     text-decoration: none;
-    position: fixed;
 
     .ant-menu-item {
         a {
@@ -14,7 +15,8 @@
             font-size: 20px;
         }
 
-        &.ant-menu-item-selected, &:hover {
+        &.ant-menu-item-selected,
+        &:hover {
             background-color: rgba(0, 0, 0, .1);
         }
     }

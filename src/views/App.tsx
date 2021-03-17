@@ -1,27 +1,28 @@
 import React from 'react'
-import { inject, observer } from 'mobx-react'
 import { renderRoutes } from 'react-router-config'
-import { HashRouter } from 'react-router-dom'
+import { HashRouter, Switch, Route } from 'react-router-dom'
 
-import axios from '@/utils/axios'
-import routes from '@router/index'
+// import axios from '@/utils/axios'
+import routes from '../router/index'
 
-import Layout from '@components/Layout'
-
-
+import Layout from '../components/Layout'
 
 
 
-function App(props: any) {
+
+
+function App() {
   return (
-    <div>
+    <HashRouter>
+      <Layout>
       <HashRouter>
-        <Layout>
-          {renderRoutes(routes)}
-        </Layout>
-      </HashRouter>
-    </div>
+        <Switch>
+          {renderRoutes(routes, { routes })}
+        </Switch>
+        </HashRouter>
+      </Layout>
+    </HashRouter>
   )
 }
 
-export default inject('user')(observer(App))
+export default App

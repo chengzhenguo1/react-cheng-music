@@ -8,7 +8,7 @@ export default memo(function Name() {
     return (
         <div className='name'>
             未登录
-            <CaretDownOutlined style={{ 'marginLeft': '2px' }} />
+            <CaretDownOutlined style={{ 'marginLeft': '4px' }} />
         </div>
     )
 })
