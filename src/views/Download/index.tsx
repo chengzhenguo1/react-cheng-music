@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 
-export default memo(function index() {
+export default memo(function Download() {
     return (
         <div>
             下载管理

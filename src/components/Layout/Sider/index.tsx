@@ -7,7 +7,7 @@ import routes from '../../../router/index'
 import { Menu } from 'antd'
 import Title from './Title/index'
 
-export default memo(function index() {
+export default memo(function Sider() {
     const { pathname } = useLocation()
     return (
         <Menu

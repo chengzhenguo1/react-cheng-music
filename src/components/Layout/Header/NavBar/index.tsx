@@ -6,7 +6,7 @@ import User from './User'
 import Link from './Link'
 import Item from './Item'
 
-export default memo(function index() {
+export default memo(function NavBar() {
     return (
         <div className='nav-bar'>
             <User />

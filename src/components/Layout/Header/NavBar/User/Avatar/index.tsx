@@ -5,7 +5,7 @@ import './index.less'
 import { QqCircleFilled } from '@ant-design/icons'
 
 
-export default memo(function index() {
+export default memo(function Avatar() {
     return (
         <div className='avatar'>
             <QqCircleFilled style={{ 'fontSize': '26px', 'color': '#E0E0E0' }} />

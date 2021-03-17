@@ -5,7 +5,7 @@ import './index.less'
 
 import { AliwangwangFilled } from '@ant-design/icons'
 
-export default memo(function index(porps) {
+export default memo(function Logo(porps) {
     return (
         <Router>
             <Link to='./' className='logo'>

@@ -4,7 +4,7 @@ import './index.less'
 
 import { LeftOutlined, RightOutlined } from '@ant-design/icons'
 
-export default memo(function index() {
+export default memo(function BackForWard() {
     return (
         <div className='back-forward'>
             <div className='menu'>
