@@ -5,6 +5,7 @@ import { Provider } from 'mobx-react'
 import stores from './store/index'
 import '@/styles/variables.css'
 import './assets/normalize.css'
+import './styles/scroll.less'
 
 import App from './views/App'
 

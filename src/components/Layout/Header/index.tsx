@@ -9,7 +9,7 @@ import NavBar from './NavBar'
 
 export default memo(function index() {
     return (
-        <div className='header'>
+        <div className='header scroll-container'>
             <Logo />
             <div className='count'>
                 <div className='count-left'>

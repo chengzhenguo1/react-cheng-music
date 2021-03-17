@@ -1,14 +1,22 @@
-
-
 :root {
-    --primary-color: #EC4141; /* 页面主题色 */
-    --sider-width: 200px; /* 左侧定宽 */
-    --header-height: 50px; /* 头部高度 */
-    --footer-height: 60px; /* 底部高度 */
-    --search-bgcolor: #E13E3E; /* 搜索框背景色 */
+    /* 页面主题色 */
+    --primary-color: #EC4141;
+    /* 左侧定宽 */
+    --sider-width: 200px;
+    /* 头部高度 */
+    --header-height: 50px;
+    /* 底部高度 */
+    --footer-height: 60px;
+    /* 搜索框背景色 */
+    --search-bgcolor: #E13E3E;
+    /* 头部菜单栏颜色 */
+    --header-menuColor: #FBD9D9;
+    /* 鼠标移上去的颜色 */
+    --header-menuColor-active: #fff;
 
-    --header-menuColor: #FBD9D9; /* 头部菜单栏颜色 */
-    --header-menuColor-active: #fff; /* 鼠标移上去的颜色 */
+    /* 文字副主题色 */
+    --text-color: #9F9F9F;
 
-    --text-color: #9F9F9F; /* 文字副主题色 */
+    /* 导航条背景色 */
+    --scroll-color: #CFCFD1;
 }
