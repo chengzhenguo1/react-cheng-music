@@ -1,32 +1,27 @@
-import React, { memo } from 'react'
+import React, { memo, useEffect } from 'react'
+import { HashRouter, NavLink, Redirect } from 'react-router-dom'
 import { renderRoutes } from 'react-router-config'
-import { HashRouter, NavLink } from 'react-router-dom'
+import routes from '../../router/index'
 
 
-interface TabProps {
-    routes: any
-}
 
 
-const Discover: React.FC<TabProps> = memo(function Discover({ routes, children }) {
-    console.log(routes[1].routes)
+
+const Discover: React.FC = memo(function Discover({ children }) {
+    const routeList = routes[1].routes
+    console.log(routeList)
     return (
         <HashRouter>
             {/* 跳转链接 */}
             <div>
-                {routes[1].routes.map(item => {
+                {routeList.map((item) => {
                     return <NavLink key={item.path} to={item.path}>{item.title}</NavLink>
                 })}
             </div>
             {/* 匹配子路由 */}
             <div>
-                {
-                    renderRoutes(routes[1].routes)
-                }
-            </div>
-            {/* undefined */}
-            <div>
-                {children}
+                < Redirect to="/discover/recommend" />
+                {renderRoutes(routeList)}
             </div>
         </HashRouter>
     )

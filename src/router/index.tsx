@@ -3,7 +3,7 @@ import {
     Redirect
 } from 'react-router-dom'
 
-import Discover from '../views/Discover'
+import Discover from '../views/Discover/index'
 import NewSong from '../views/Discover/NewSong'
 import Ranking from '../views/Discover/Ranking'
 import Recommend from '../views/Discover/Recommend'
@@ -44,37 +44,43 @@ const routes: RouterConfig[] = [
         path: '/',
         exact: true,
         component: Layout,
-        render: () => (< Redirect to="/recommend" />)
+        render: () => (< Redirect to="/discover" />)
     },
     {
-        path: '/recommend',
+        path: '/discover',
         title: '发现音乐',
         component: Discover,
         routes: [
             {
-                path: '/recommend',
+                path: '/discover/recommend',
                 title: '个性推荐',
+                exact: true,
                 component: Recommend
             },
             {
-                path: '/songlist',
+                path: '/discover/songlist',
                 title: '歌单',
+                exact: true,
                 component: SongList
             }, {
-                path: '/tv',
+                path: '/discover/tv',
                 title: '主播电台',
+                exact: true,
                 component: Tv
             }, {
-                path: '/ranking',
+                path: '/discover/ranking',
                 title: '排行榜',
+                exact: true,
                 component: Ranking
             }, {
-                path: '/singer',
+                path: '/discover/singer',
                 title: '歌手',
+                exact: true,
                 component: Singer
             }, {
-                path: '/newsong',
+                path: '/discover/newsong',
                 title: '最新音乐',
+                exact: true,
                 component: NewSong
             }]
     },

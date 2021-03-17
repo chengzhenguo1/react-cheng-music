@@ -15,11 +15,9 @@ function App() {
   return (
     <HashRouter>
       <Layout>
-      <HashRouter>
         <Switch>
           {renderRoutes(routes, { routes })}
         </Switch>
-        </HashRouter>
       </Layout>
     </HashRouter>
   )
