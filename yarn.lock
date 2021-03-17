@@ -268,6 +268,11 @@
   resolved "https://registry.npm.taobao.org/@types/history/download/@types/history-4.7.8.tgz#49348387983075705fe8f4e02fb67f7daaec4934"
   integrity sha1-STSDh5gwdXBf6PTgL7Z/farsSTQ=
 
+"@types/less@^3.0.2":
+  version "3.0.2"
+  resolved "https://registry.npm.taobao.org/@types/less/download/@types/less-3.0.2.tgz#2761d477678c8374cb9897666871662eb1d1115e"
+  integrity sha1-J2HUd2eMg3TLmJdmaHFmLrHREV4=
+
 "@types/node@^14.14.34":
   version "14.14.34"
   resolved "https://registry.npm.taobao.org/@types/node/download/@types/node-14.14.34.tgz#07935194fc049069a1c56c0c274265abeddf88da"

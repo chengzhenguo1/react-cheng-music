@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import { Provider } from 'mobx-react'
 
 import stores from './store/index'
+import '@/styles/variables.css'
 import './assets/normalize.css'
 
 import App from './views/App'

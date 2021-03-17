@@ -1,15 +1,15 @@
 import { defineConfig } from 'vite'
 import path from 'path'
-import fs from 'fs'
+// import fs from 'fs'
 
-import lessToJS from 'less-vars-to-js'
+// import lessToJS from 'less-vars-to-js'
 import reactRefresh from '@vitejs/plugin-react-refresh'
 import vitePluginImp from 'vite-plugin-imp'
 
 // less 转换成json 格式
-const themeVariables = lessToJS(
-  fs.readFileSync(path.resolve(__dirname, './src/styles/variables.less'), 'utf8')
-)
+/* const themeVariables = lessToJS(
+  fs.readFileSync(path.resolve(__dirname, './src/styles/variables.css'), 'utf8')
+) */
 
 
 // 获取环境变量
@@ -43,7 +43,7 @@ export default defineConfig({
       less: {
         // 支持内联 JavaScript
         javascriptEnabled: true,
-        modifyVars: themeVariables
+        /* modifyVars: themeVariables */
       }
     }
   },

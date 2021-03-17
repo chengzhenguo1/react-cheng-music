@@ -1,16 +1,17 @@
-@import '../../../../styles/variables.less';
-
 .serach {
     width: 160px;
+
     .serach-put {
         color: #fff;
-        background-color: @search-bgcolor;
+        background-color: var(--search-bgcolor);
         border: none;
         border-radius: 20px;
+
         input {
-            background-color: @search-bgcolor;
+            background-color: var(--search-bgcolor);
             color: #fff;
-            &::-webkit-input-placeholder{
+
+            &::-webkit-input-placeholder {
                 color: rgba(255, 255, 255, .3);
                 font-size: 10px;
             }
