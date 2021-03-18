@@ -1,3 +1,3 @@
-const serverAddr = import.meta.env.MODE == 'development' ? '123.207.32.32' : '123.207.32.32'
+const serverAddr = import.meta.env.MODE == 'development' ? '47.115.57.59' : '47.115.57.59'
 
-export const SERVER = `http://${serverAddr}:9001`
+export const SERVER = `http://${serverAddr}:3000`

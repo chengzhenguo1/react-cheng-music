@@ -9,7 +9,7 @@ import Footer from './Footer'
 
 const Layout: React.FC = memo(({ children }) => {
     return (
-        <div className='layout scroll-container'>
+        <div className='layout'>
             <Header />
             <main className='middle'>
                 <Sider />

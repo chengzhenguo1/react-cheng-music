@@ -1,10 +1,10 @@
 .sider-bar {
-    position: fixed;
-    top: var(--header-height);
-    bottom: var(--footer-height);
     width: var(--sider-width);
+    flex-basis: var(--sider-width);
     text-decoration: none;
     padding: 10px 10px 0;
+    z-index: 3;
+    min-width: 200px;
 
     .ant-menu {
         color: var(--text-color)

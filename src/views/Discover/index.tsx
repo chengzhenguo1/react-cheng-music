@@ -5,7 +5,7 @@ import { RouterConfig } from '../../router/index'
 
 import './index.less'
 
-import TbaList from '../../components/TabList'
+import TbaList from '../../components/Tabs'
 
 
 interface TabProps {
