@@ -28,10 +28,10 @@ import Layout from 'antd/lib/layout/layout'
 
 // 路由配置
 export interface RouterConfig {
-    path?: string
+    path: string
     exact?: boolean
-    component?: any
-    title?: string
+    component: any
+    title: string
     icon?: React.FC
     render?: any
     routes?: RouterConfig[]
@@ -43,6 +43,7 @@ const routes: RouterConfig[] = [
     {
         path: '/',
         exact: true,
+        title: '首页',
         component: Layout,
         render: () => (< Redirect to="/discover" />)
     },

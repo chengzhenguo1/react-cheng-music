@@ -14,8 +14,13 @@
     /* 鼠标移上去的颜色 */
     --header-menuColor-active: #fff;
 
+    /* 灰色文字 */
+    --text-color-gray: #B3B3B3;
+
     /* 文字副主题色 */
-    --text-color: #9F9F9F;
+    --text-color: rgba(0, 0, 0, 0.9);
+    /* 选中后颜色 */
+    --text-active-color: #000;
 
     /* 导航条背景色 */
     --scroll-color: #CFCFD1;
