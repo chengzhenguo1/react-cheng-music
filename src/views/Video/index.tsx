@@ -1,9 +1,9 @@
 import React, { memo } from 'react'
 
-export default memo(function Video() {
-    return (
-        <div>
-            视频
-        </div>
-    )
-})
+const Video = memo(() => (
+    <div>
+        视频
+    </div>
+    ))
+
+export default Video

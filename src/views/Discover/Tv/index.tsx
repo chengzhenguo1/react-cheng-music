@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 
-export default memo(function Tv(props) {
+export default memo((props) => {
     console.log(props)
     return (
         <div>

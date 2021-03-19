@@ -1,26 +1,30 @@
-import React, { memo, useEffect, useState } from 'react'
+import React, { memo } from 'react'
 
 import './index.less'
 
-import { Carousel, Image } from 'antd'
+import { Carousel, Image, Spin } from 'antd'
 import { IBanner } from '../../api/types/recomment'
 
 interface SwiperProps {
-    banners: IBanner[]
+    banners?: IBanner[]
 }
 
-const Swipers: React.FC<SwiperProps> = memo(function Swipers({ banners }) {
-    return (
-        <div className='swipers'>
-            <Carousel autoplay>
-                {
-                    banners?.length > 0 && banners.map(item => (
-                        <Image preview={false} src={item.pic} key={item.targetId} title={item.typeTitle} width={'80%'} />
-                    ))
-                }
-            </Carousel>
-        </div>
-    )
-})
+const Swipers: React.FC<SwiperProps> = memo(({ banners }) => (
+    <div className='swipers'>
+        <Carousel>
+            {
+                banners?.map((item) => (
+                    <div className='swiper-card' key={item.targetId}>
+                        <Image preview={false} src={item.pic} title={item.typeTitle} width='100%' placeholder={<Spin />} />
+                        <i style={{ backgroundColor: item.titleColor }}>
+                            {item.typeTitle}
+                            1
+                        </i>
+                    </div>
+                ))
+      }
+        </Carousel>
+    </div>
+))
 
 export default Swipers

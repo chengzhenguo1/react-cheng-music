@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 
-export default memo(function SongList() {
+export default memo(() => {
     console.log('歌单')
     return (
         <div>

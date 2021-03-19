@@ -7,17 +7,17 @@ import BackForward from './BackForward'
 import Search from './Search'
 import NavBar from './NavBar'
 
-export default memo(function index() {
-    return (
-        <div className='header'>
-            <Logo />
-            <div className='count'>
-                <div className='count-left'>
-                    <BackForward />
-                    <Search />
-                </div>
-                <NavBar />
-            </div>
-        </div>
-    )
-})
+const Header = memo(() => (
+	<div className='header'>
+		<Logo />
+		<div className='count'>
+			<div className='count-left'>
+				<BackForward />
+				<Search />
+			</div>
+			<NavBar />
+		</div>
+	</div>
+))
+
+export default Header

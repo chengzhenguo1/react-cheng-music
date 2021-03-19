@@ -11,7 +11,6 @@ import vitePluginImp from 'vite-plugin-imp'
   fs.readFileSync(path.resolve(__dirname, './src/styles/variables.css'), 'utf8')
 ) */
 
-
 // 获取环境变量
 // const env = process.argv[process.argv.length - 1]
 
@@ -23,8 +22,8 @@ export default defineConfig({
       '@store': path.resolve(__dirname, './src/store'),
       '@router': path.resolve(__dirname, './src/router'),
       '@components': path.resolve(__dirname, './src/components'),
-      '@views': path.resolve(__dirname, './src/views')
-    }
+      '@views': path.resolve(__dirname, './src/views'),
+    },
   },
   plugins: [
     reactRefresh(),
@@ -32,11 +31,11 @@ export default defineConfig({
       // 按需引入
       libList: [
         {
-          libName: "antd",
+          libName: 'antd',
           style: (name) => `antd/lib/${name}/style/index.less`,
         },
       ],
-    })
+    }),
   ],
   css: {
     preprocessorOptions: {
@@ -44,7 +43,7 @@ export default defineConfig({
         // 支持内联 JavaScript
         javascriptEnabled: true,
         /* modifyVars: themeVariables */
-      }
-    }
+      },
+    },
   },
 })
