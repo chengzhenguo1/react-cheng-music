@@ -1,21 +1,22 @@
-import React, { memo, Fragment } from 'react'
+import React, { memo, Fragment, useCallback } from 'react'
 import { useLocation, useHistory } from 'react-router-dom'
 
 import './index.less'
 import { Menu } from 'antd'
-import routes from '../../../router/index'
+import { menuRoutes } from '../../../router/index'
 
 import Title from './Title/index'
 
-export default memo(() => {
+const Silder = memo(() => {
     const { pathname } = useLocation()
     const { push } = useHistory()
-
-    console.log('xuanranle')
-
-    const toMenupath = (e: any) => {
-        if (e.key !== pathname) push(e.key)
-    }
+    
+    const toMenupath = useCallback(
+        (e) => {
+            if (e.key !== pathname) push(e.key)
+        },
+        [pathname],
+    )
 
     return (
         <Menu
@@ -24,25 +25,20 @@ export default memo(() => {
           mode='inline'
           onClick={(e) => toMenupath(e)}>
             {
-                routes.map(({
- path, title, render, icon, 
-}) => {
-                    const MyIcon = icon
-                    return (
-                        !render
-                            ? (
-                                <Fragment key={path}>
-                                    {/* 本地音乐上面添加一个我的音乐 */}
-                                    {title === '本地音乐' && <Title title='我的音乐' />}
-                                    <Menu.Item key={path} icon={MyIcon && <MyIcon />}>
-                                        {title}
-                                    </Menu.Item>
-                                </Fragment>
-)
-                            : null
-                    )
-                })
+                menuRoutes.map(({
+ path, title, Icon, 
+}) => (
+    <Fragment key={path}>
+        {/* 本地音乐上面添加一个我的音乐 */}
+        {title === '本地音乐' && <Title title='我的音乐' />}
+        <Menu.Item key={path} icon={Icon && <Icon />}>
+            {title}
+        </Menu.Item>
+    </Fragment>
+                    ))
             }
         </Menu>
     )
 })
+
+export default Silder

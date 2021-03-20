@@ -1,9 +1,10 @@
 import axios, { AxiosRequestConfig, ResponseType, AxiosInstance } from 'axios'
-import { SERVER } from '../constants/server'
 import { message as Message } from 'antd'
+import { SERVER } from '../constants/server'
 
 const TIMEOUT = 40000
 
+// eslint-disable-next-line no-undef
 const MIME_TYPE: IDictionary<ResponseType> = {
     JSON: 'json',
 }
@@ -21,9 +22,7 @@ const createInstance = () => {
     return instance
 }
 
-const handleResponse = (response: any) => {
-    return response.data
-}
+const handleResponse = (response: any) => response.data
 
 const handleError = (error: any) => {
     const { response, message } = error
@@ -39,6 +38,7 @@ const toastError = (error: any) => {
 }
 
 interface Instance extends AxiosInstance {
+    // eslint-disable-next-line no-unused-vars
     (config: AxiosRequestConfig): Promise<any>
 }
 

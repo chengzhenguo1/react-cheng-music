@@ -13,16 +13,16 @@ const MenuList: React.FC<RouterConfig> = memo(({
     return (
         !render
             ? (
-              <Fragment key={path}>
-                {/* 本地音乐上面添加一个我的音乐 */}
-                {title === '本地音乐' && <Title title='我的音乐' />}
-                <Menu.Item key={path}>
-                  <Link to={path}>
-                    {MyIcon && <MyIcon />}
-                    {title}
-                  </Link>
-                </Menu.Item>
-              </Fragment>
+                <Fragment key={path}>
+                    {/* 本地音乐上面添加一个我的音乐 */}
+                    {title === '本地音乐' && <Title title='我的音乐' />}
+                    <Menu.Item key={path}>
+                        <Link to={path}>
+                            {MyIcon && <MyIcon />}
+                            {title}
+                        </Link>
+                    </Menu.Item>
+                </Fragment>
 )
             : null
     )

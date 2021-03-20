@@ -11,10 +11,10 @@ interface SwiperProps {
 
 const Swipers: React.FC<SwiperProps> = memo(({ banners }) => (
     <div className='swipers'>
-        <Carousel>
+        <Carousel autoplay effect='fade'>
             {
                 banners?.map((item) => (
-                    <div className='swiper-card' key={item.targetId}>
+                    <div className='swiper-card' key={item.pic}>
                         <Image preview={false} src={item.pic} title={item.typeTitle} width='100%' placeholder={<Spin />} />
                         <i style={{ backgroundColor: item.titleColor }}>
                             {item.typeTitle}

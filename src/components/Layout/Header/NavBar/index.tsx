@@ -6,10 +6,12 @@ import User from './User'
 import MyLink from './Link'
 import Item from './Item'
 
-export default memo(() => (
-	<div className='nav-bar'>
-		<User />
-		<Item />
-		<MyLink />
-	</div>
+const Header = memo(() => (
+    <div className='nav-bar'>
+        <User />
+        <Item />
+        <MyLink />
+    </div>
     ))
+
+export default Header

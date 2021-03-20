@@ -49,6 +49,10 @@ module.exports = {
     'no-use-before-define': 0,
     // 允许代码后面空白
     'no-trailing-spaces': 0,
+    // 允许变量定义了未使用
+    // 'no-unused-vars': 'off',
+    // 允许Ts变量定义了未使用
+    '@typescript-eslint/no-unused-vars': 'off',
 
     // 有一些 event 的时候，不需要 role 属性，不需要其他解释
     'jsx-a11y/no-static-element-interactions': 0,

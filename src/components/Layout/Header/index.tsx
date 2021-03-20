@@ -8,16 +8,16 @@ import Search from './Search'
 import NavBar from './NavBar'
 
 const Header = memo(() => (
-	<div className='header'>
-		<Logo />
-		<div className='count'>
-			<div className='count-left'>
-				<BackForward />
-				<Search />
-			</div>
-			<NavBar />
-		</div>
-	</div>
+    <div className='header'>
+        <Logo />
+        <div className='count'>
+            <div className='count-left'>
+                <BackForward />
+                <Search />
+            </div>
+            <NavBar />
+        </div>
+    </div>
 ))
 
 export default Header

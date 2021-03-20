@@ -1,15 +1,15 @@
 import UserStore from './user/index'
-import { UserActions, UserState } from './types/user'
+import { UserActions } from './types/user'
 
 const user = new UserStore()
 
 // 定义仓库类型
 export interface StoreType {
-    user: UserActions & UserState
+    user: UserActions 
 }
 
 const stores: StoreType = {
-    user
+    user,
 }
 
 export default stores

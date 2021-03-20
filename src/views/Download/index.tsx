@@ -1,9 +1,7 @@
 import React, { memo } from 'react'
 
-export default memo(function Download() {
-    return (
-        <div>
-            下载管理
-        </div>
-    )
-})
+export default memo(() => (
+    <div>
+        下载管理
+    </div>
+    ))

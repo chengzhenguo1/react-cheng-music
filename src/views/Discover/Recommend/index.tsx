@@ -2,7 +2,7 @@ import React, { memo, useEffect, useState } from 'react'
 
 import SwiperList from '../../../components/Swipers/index'
 
-import { getBanners } from '../../../api/recomment'
+import recommentApi from '../../../api/recomment'
 import { IBanner } from '../../../api/types/recomment'
 
 const Recommend: React.FC = memo(() => {
@@ -10,8 +10,7 @@ const Recommend: React.FC = memo(() => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const res = await getBanners()
-            console.log(res)
+            const res = await recommentApi.getBanners()
             setbannerList(res)
         }
         fetchData()
