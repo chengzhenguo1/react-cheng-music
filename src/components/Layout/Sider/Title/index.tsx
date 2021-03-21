@@ -6,10 +6,10 @@ interface Iprops {
     title: string
 }
 
-const Title:React.FC<Iprops> = memo((props: { title: string }) => (
+const MenuTitle:React.FC<Iprops> = memo((props: { title: string }) => (
     <div className='silder-title'>
         {props.title}
     </div>
     ))
 
-export default Title
+export default MenuTitle

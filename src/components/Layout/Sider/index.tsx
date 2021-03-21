@@ -5,7 +5,7 @@ import './index.less'
 import { Menu } from 'antd'
 import { menuRoutes } from '../../../router/index'
 
-import Title from './Title/index'
+import MenuTitle from './Title/index'
 
 const Silder = memo(() => {
     const { pathname } = useLocation()
@@ -30,7 +30,7 @@ const Silder = memo(() => {
 }) => (
     <Fragment key={path}>
         {/* 本地音乐上面添加一个我的音乐 */}
-        {title === '本地音乐' && <Title title='我的音乐' />}
+        {title === '本地音乐' && <MenuTitle title='我的音乐' />}
         <Menu.Item key={path} icon={Icon && <Icon />}>
             {title}
         </Menu.Item>

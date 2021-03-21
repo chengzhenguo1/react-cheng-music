@@ -4,7 +4,7 @@ import path from 'path'
 
 // import lessToJS from 'less-vars-to-js'
 import reactRefresh from '@vitejs/plugin-react-refresh'
-import vitePluginImp from 'vite-plugin-imp'
+// import vitePluginImp from 'vite-plugin-imp'
 
 // less 转换成json 格式
 /* const themeVariables = lessToJS(
@@ -27,7 +27,7 @@ export default defineConfig({
   },
   plugins: [
     reactRefresh(),
-    vitePluginImp({
+    /* vitePluginImp({
       // 按需引入
       libList: [
         {
@@ -35,7 +35,7 @@ export default defineConfig({
           style: (name) => `antd/lib/${name}/style/index.less`,
         },
       ],
-    }),
+    }), */
   ],
   css: {
     preprocessorOptions: {

@@ -1,0 +1,49 @@
+.cover {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    .cover-card {
+        flex-basis: 20%;
+        padding-right: 14px;
+        .image-cover {
+            border-radius: 100px;
+            position: relative;
+            &:hover .play-btn {
+                display: block;
+            }
+            .ant-image-img {
+                border-radius: 4px;
+            }
+        }
+
+        &:nth-child(5n+5) {
+            margin-right: 0;
+        }
+
+        .cover-info {
+            color: var(--text-color);
+            margin-top: 2px;
+        }
+
+        .play-count {
+            position: absolute;
+            top: 2px;
+            right: 5px;
+            color: #fff;
+        }
+        .play-btn {
+            display: none;
+            position: absolute;
+            bottom: 10px;
+            right: 5px;
+            background-color: #fff;
+            width: 20px;
+            height: 20px;
+            line-height: 20px;
+            text-align: center;
+            border-radius: 50%;
+        }
+    }
+}

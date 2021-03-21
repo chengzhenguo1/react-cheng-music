@@ -1,24 +1,19 @@
-import React, { memo, useEffect, useState } from 'react'
-
-import SwiperList from '../../../components/Swipers/index'
+import React, { memo } from 'react'
+import { useAsync } from 'react-use'
 
 import recommentApi from '../../../api/recomment'
-import { IBanner } from '../../../api/types/recomment'
+
+import SwiperList from '../../../components/Swipers/index'
+import PlayList from './PlayList/index'
+import SongList from './SongList'
 
 const Recommend: React.FC = memo(() => {
-    const [bannerList, setbannerList] = useState<IBanner[]>([])
-
-    useEffect(() => {
-        const fetchData = async () => {
-            const res = await recommentApi.getBanners()
-            setbannerList(res)
-        }
-        fetchData()
-    }, [])
-
+    const { value: bannerList } = useAsync(recommentApi.getBanners)
     return (
         <div>
             <SwiperList banners={bannerList} />
+            <PlayList />
+            <SongList />
         </div>
     )
 })

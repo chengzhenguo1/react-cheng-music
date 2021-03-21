@@ -8,3 +8,11 @@ export interface IBanner {
     typeTitle: string
     url: string
 }
+
+export interface IRecommendList {
+    id: number
+    name: string
+    copywriter: string
+    playCount: number
+    picUrl:string
+}

@@ -7,6 +7,7 @@ import './utils/autoRem.js'
 import '@/styles/variables.css'
 import './assets/normalize.css'
 import './styles/media.less'
+import 'antd/dist/antd.less'
 
 import App from './views/App'
 
