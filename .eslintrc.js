@@ -50,7 +50,7 @@ module.exports = {
     // 允许代码后面空白
     'no-trailing-spaces': 0,
     // 允许变量定义了未使用
-    // 'no-unused-vars': 'off',
+    'no-unused-vars': 'off',
     // 允许Ts变量定义了未使用
     '@typescript-eslint/no-unused-vars': 'off',
 

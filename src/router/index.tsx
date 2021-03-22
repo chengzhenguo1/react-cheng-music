@@ -7,6 +7,7 @@ import {
     CloudDownloadOutlined,
     CustomerServiceFilled,
 } from '@ant-design/icons'
+
 import Layout from 'antd/lib/layout/layout'
 import Discover from '../views/Discover/index'
 import NewSong from '../views/Discover/NewSong'
@@ -15,6 +16,8 @@ import Recommend from '../views/Discover/Recommend'
 import Singer from '../views/Discover/Singer'
 import SongList from '../views/Discover/SongList'
 import Tv from '../views/Discover/Tv'
+
+import SonglistDetail from '../views/SonglistDetail/index'
 
 import Download from '../views/Download'
 import Friend from '../views/Friend'
@@ -46,33 +49,27 @@ export const menuRoutes: RouterConfig[] = [
             {
                 path: '/discover/recommend',
                 title: '个性推荐',
-                exact: true,
                 component: Recommend,
             },
             {
                 path: '/discover/songlist',
                 title: '歌单',
-                exact: true,
                 component: SongList,
             }, {
                 path: '/discover/tv',
                 title: '主播电台',
-                exact: true,
                 component: Tv,
             }, {
                 path: '/discover/ranking',
                 title: '排行榜',
-                exact: true,
                 component: Ranking,
             }, {
                 path: '/discover/singer',
                 title: '歌手',
-                exact: true,
                 component: Singer,
             }, {
                 path: '/discover/newsong',
                 title: '最新音乐',
-                exact: true,
                 component: NewSong,
             }],
     },
@@ -119,6 +116,11 @@ const routes: RouterConfig[] = [
         render: () => (<Redirect to='/discover' />),
     },
     ...menuRoutes,
+    {
+        path: '/songlists/:id',
+        title: '推荐歌单',
+        component: SonglistDetail,
+    },
    {
        path: '*',
        title: '404',

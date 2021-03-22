@@ -13,6 +13,7 @@ interface TabProps {
 
 const Discover: React.FC<TabProps> = memo(({ routes }) => {
     const routeList = routes[1].routes
+    console.log(routeList)
 
     const { pathname } = useLocation()
     const { replace } = useHistory()

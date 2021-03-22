@@ -4,15 +4,15 @@ import { useAsync } from 'react-use'
 import recommentApi from '../../../api/recomment'
 
 import SwiperList from '../../../components/Swipers/index'
-import PlayList from './PlayList/index'
 import SongList from './SongList'
 
 const Recommend: React.FC = memo(() => {
     const { value: bannerList } = useAsync(recommentApi.getBanners)
     return (
         <div>
+            {/* 轮播图 */}
             <SwiperList banners={bannerList} />
-            <PlayList />
+            {/* 推荐歌单 */}
             <SongList />
         </div>
     )

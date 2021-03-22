@@ -5,7 +5,7 @@ import './index.less'
 
 import { Image, Spin } from 'antd'
 import { CaretRightOutlined } from '@ant-design/icons'
-import formatCount from '../../utils/formatCount'
+import { formatCount } from '../../utils/format'
 
 interface IProps {
     name: string 
@@ -19,8 +19,8 @@ interface IProps {
 const Cover: React.FC<IProps> = memo(({
     name, playCount, playType, pid, path, picUrl,
 }) => (
-    <div className='cover'>
-        <Link to={`${path}/${pid}`}>
+    <div className='cover-card'>
+        <Link to={`/${path}/${pid}`}>
             <div className='image-cover'>
                 <Image src={picUrl} placeholder={<Spin />} preview={false} />
                 {/* 播放按钮 */}
@@ -29,7 +29,7 @@ const Cover: React.FC<IProps> = memo(({
             <p className='cover-info'>{name}</p>
             {/* 热度 */}
             <i className='play-count'>
-                <CaretRightOutlined style={{ color: '#fff' }} />
+                <CaretRightOutlined style={{ color: '#fff', fontSize: '14px' }} />
                 {formatCount(playCount)}
             </i>
         </Link>
