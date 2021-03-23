@@ -1,12 +1,13 @@
-import React, { memo } from 'react'
+import React, { Fragment, memo } from 'react'
 import { Link } from 'react-router-dom'
+import dayjs from 'dayjs'
 
 import './index.less'
 import {
  Image, Avatar, 
 } from 'antd'
 import { Playlist } from '../../../api/types/songlist'
-import { formatCount, formatDatetime } from '../../../utils/format'
+import { formatCount } from '../../../utils/format'
 
 interface IProps {
     data?: Playlist
@@ -25,7 +26,7 @@ const SongLists: React.FC<IProps> = memo(({ data }) => (
                 <Avatar size={25} src={`${data?.creator?.avatarUrl}?param=25y25`} />
                 <Link to='/'>{data?.creator.nickname}</Link>
                 <span className='info-time base-color'>
-                    {formatDatetime(data?.createTime)}
+                    {dayjs(data?.createTime).format('YYYY-MM-DD')}
                     创建
                 </span>
             </div>
@@ -33,12 +34,12 @@ const SongLists: React.FC<IProps> = memo(({ data }) => (
             <div className='info-tags'>
                 标签：
                 {data?.tags.map((item) => (
-                    <>
+                    <Fragment key={item}>
                         <Link to='/'>
                             {item}
                         </Link>
                         <i style={{ display: 'none' }}>/</i>
-                    </>
+                    </Fragment>
                      ))}
             </div>
             <div className='info-count'>

@@ -1,3 +1,25 @@
+/* 歌单评论 */
+export interface IsongComment {
+  code: number
+  total: number
+  more: boolean
+  
+}
+
+interface Comments {
+  commentId: number
+  content: string
+  time: number
+  liked: boolean
+}
+interface UserInfo {
+  nickname: string
+  userId: number
+  avatarUrl: string
+  
+}
+
+/* 歌单开始 */
 export interface ISongList {
     code: number
     relatedVideos?: any
@@ -58,7 +80,7 @@ export interface Playlist {
     alg?: any
   }
   
-  interface Track {
+export interface Track {
     name: string
     id: number
     pst: number
@@ -97,7 +119,7 @@ export interface Playlist {
     cp: number
     mv: number
     publishTime: number
-  }
+}
   
   interface OriginSongSimpleDatum {
     songId: number
@@ -166,3 +188,5 @@ export interface Playlist {
     avatarImgIdStr: string
     backgroundImgIdStr: string
   }
+
+  /* 歌单结束 */

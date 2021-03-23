@@ -7,10 +7,8 @@ import { RouterConfig } from '../../../../router/index'
 import Title from '../Title/index'
 
 const MenuList: React.FC<RouterConfig> = memo(({
- path, title, icon, render, 
-}) => {
-    const MyIcon = icon
-    return (
+ path, title, Icon, render, 
+}) => (
         !render
             ? (
                 <Fragment key={path}>
@@ -18,14 +16,13 @@ const MenuList: React.FC<RouterConfig> = memo(({
                     {title === '本地音乐' && <Title title='我的音乐' />}
                     <Menu.Item key={path}>
                         <Link to={path}>
-                            {MyIcon && <MyIcon />}
+                            {Icon && <Icon />}
                             {title}
                         </Link>
                     </Menu.Item>
                 </Fragment>
 )
             : null
-    )
-})
+    ))
 
 export default MenuList

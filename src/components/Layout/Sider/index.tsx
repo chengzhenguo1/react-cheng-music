@@ -1,4 +1,6 @@
-import React, { memo, Fragment, useCallback } from 'react'
+import React, {
+ memo, Fragment, useCallback, useState, useEffect,
+} from 'react'
 import { useLocation, useHistory } from 'react-router-dom'
 
 import './index.less'
@@ -10,19 +12,26 @@ import MenuTitle from './Title/index'
 const Silder = memo(() => {
     const { pathname } = useLocation()
     const { push } = useHistory()
-    
+    const [filterPath, setFilterPath] = useState(`/${pathname.split('/')[1]}`)
+    /* 过滤页面路径不匹配问题 */
+    useEffect(() => {
+        setFilterPath(`/${pathname.split('/')[1]}`)
+    }, [pathname])
+
+    /* 点击路由跳转页面 */
     const toMenupath = useCallback(
         (e) => {
-            if (e.key !== pathname) push(e.key)
+            if (e.key !== filterPath) push(e.key)
         },
-        [pathname],
-    )
+    [pathname],
+    ) 
 
     return (
         <Menu
           className='sider-bar'
-          defaultSelectedKeys={[pathname]}
+          defaultSelectedKeys={[filterPath]}
           mode='inline'
+          key={filterPath}
           onClick={(e) => toMenupath(e)}>
             {
                 menuRoutes.map(({

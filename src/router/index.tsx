@@ -39,6 +39,8 @@ export interface RouterConfig {
     routes?: RouterConfig[]
 }
 
+export const menuPath = ['/discover/recommend', '/video', '/friend', '/live', '/privateFm', '/localMusic', '/download']
+
 // 侧边栏显示的路由
 export const menuRoutes: RouterConfig[] = [
     {

@@ -5,7 +5,7 @@ import { RouterConfig } from '../../router/index'
 
 import './index.less'
 
-import TbaList from '../../components/Tabs'
+import TbaList from '../../components/TabList'
 
 interface TabProps {
     routes: RouterConfig[]
@@ -13,7 +13,6 @@ interface TabProps {
 
 const Discover: React.FC<TabProps> = memo(({ routes }) => {
     const routeList = routes[1].routes
-    console.log(routeList)
 
     const { pathname } = useLocation()
     const { replace } = useHistory()
