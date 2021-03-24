@@ -32,7 +32,7 @@ const SongLists: React.FC<IProps> = memo(({ data }) => (
             </div>
             <div className='info-btn'>播放全部</div>
             <div className='info-tags'>
-                标签：
+                <span>标签：</span>
                 {data?.tags.map((item) => (
                     <Fragment key={item}>
                         <Link to='/'>
@@ -57,10 +57,10 @@ const SongLists: React.FC<IProps> = memo(({ data }) => (
                 </div>
             </div>
             <div className='info-des'>
-                简介：
-                <span className='base-color'>                    
+                <span>简介：</span>
+                <div className='base-color base-info'>                    
                     {data?.description}
-                </span>
+                </div>
             </div>
         </div>
     </div>

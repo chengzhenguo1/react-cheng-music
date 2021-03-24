@@ -1,22 +1,37 @@
 /* 歌单评论 */
 export interface IsongComment {
-  code: number
-  total: number
-  more: boolean
-  
+  total?: number
+  more?: boolean
+  moreHot?: boolean
+  type?: number
+  comments?: Comments[] // 最新评论
+  hotComments?: Comments[] // 精彩评论
+  [propName: string]: any
+}
+export interface Comments {
+  user: UserInfo
+  content: string
+  commentId: number
+  time: number 
+  likedCount: number
+  beReplied: {
+    beRepliedCommentId: number
+    user: BeRepliedUser
+    content: string
+  }[] // 子评论
 }
 
-interface Comments {
-  commentId: number
-  content: string
-  time: number
-  liked: boolean
-}
-interface UserInfo {
+// 评论用户信息
+export interface UserInfo {
   nickname: string
   userId: number
   avatarUrl: string
-  
+}
+
+export interface BeRepliedUser{
+  nickname: string
+  beRepliedCommentId: number
+  avatarUrl: string
 }
 
 /* 歌单开始 */

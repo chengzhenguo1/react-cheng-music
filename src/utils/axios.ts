@@ -31,7 +31,7 @@ const handleError = (error: any) => {
 
 const toastError = (error: any) => {
     const { response, message } = error
-
+    console.log(response)
     Message.error(response?.data?.message || message)
 
     return Promise.reject(error)
@@ -45,6 +45,12 @@ interface Instance extends AxiosInstance {
 export const requestWithoutErrorToast: Instance = createInstance()
 
 const request: Instance = createInstance()
-request.interceptors.response.use(undefined, toastError)
+
+request.interceptors.response.use((res:any):any => {
+    if (res.code !== 200) {
+        Message.error(res?.data?.message || '请求错误')
+    }
+    return res
+}, toastError)
 
 export default request
