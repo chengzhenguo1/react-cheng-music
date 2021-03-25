@@ -15,7 +15,7 @@ import Ranking from '../views/Discover/Ranking'
 import Recommend from '../views/Discover/Recommend'
 import Singer from '../views/Discover/Singer'
 import SongList from '../views/Discover/SongList'
-import Tv from '../views/Discover/Tv'
+import Daily from '../views/Discover/Daily'
 
 import SonglistDetail from '../views/SonglistDetail/index'
 
@@ -58,9 +58,9 @@ export const menuRoutes: RouterConfig[] = [
                 title: '歌单',
                 component: SongList,
             }, {
-                path: '/discover/tv',
-                title: '主播电台',
-                component: Tv,
+                path: '/discover/recommend_daily',
+                title: '每日歌曲推荐',
+                component: Daily,
             }, {
                 path: '/discover/ranking',
                 title: '排行榜',

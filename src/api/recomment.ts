@@ -1,6 +1,7 @@
 import axios from '../utils/axios'
 
 import { IBanner, IRecommendList } from './types/recomment'
+import {} from ''
 
 type GetBannersFn = () => Promise<IBanner[]>
 type GetRecommendListFn = ()=> Promise<IRecommendList[]>
@@ -37,7 +38,6 @@ export enum LickType {
     MOVIE = 5,
     DYNAMIC =6
 }
-
 const setCommentLike:SetLikeFn = async (cid:number, type = 2, t: 1|0) => {
     const res = await axios({
         url: '/comment/like',

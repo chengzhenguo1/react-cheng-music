@@ -4,6 +4,10 @@ import { SERVER } from '../constants/server'
 
 const TIMEOUT = 40000
 
+interface IDictionary<T> {
+    [key: string]: T
+}
+
 // eslint-disable-next-line no-undef
 const MIME_TYPE: IDictionary<ResponseType> = {
     JSON: 'json',

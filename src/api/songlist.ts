@@ -1,10 +1,11 @@
 import axios from '../utils/axios'
 
-import { ISonglist, IsongComment } from './types/songlist'
+import { ISonglist, IsongComment, IMusic } from './types/songlist'
 
 type GetSongListFn = (id:string) => Promise<ISonglist>
 type GetSongCommentFn = (id:string, page?:number, limit?:number) => Promise<IsongComment>
 type GetUserSonglistFn = (uid:number) => Promise<{create: ISonglist[]; collect: ISonglist[] }>
+type GetRecommentDaily = () => Promise<IMusic>
 
 /* 获取歌单列表 */
 const getSongList:GetSongListFn = async (id) => {
@@ -52,8 +53,17 @@ const getUserSonglist: GetUserSonglistFn = async (uid) => {
     }
 }
 
+/* 获取每日推荐歌曲，需要登录 */
+const getRecommendDaily = async () => {
+    const res = await axios({
+        url: '/recommend/songs',
+    })
+    return res.data.dailySongs
+}
+
 export default {
     getSongList,
     getSongComment,
     getUserSonglist,
+    getRecommendDaily,
 }

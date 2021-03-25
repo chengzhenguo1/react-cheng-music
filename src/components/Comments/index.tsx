@@ -22,7 +22,7 @@ const Comment: React.FC<IsongComment> = memo((data) => (
               type={data?.type} 
               onChangePage={data.onChangePage} />
             )}
-        {(data?.comments?.length < 1 && data?.comments?.length < 1) && <Result status='warning' title='暂无数据' />}
+        {data?.comments?.length < 1 && data?.comments?.length < 1 && <Result status='warning' title='暂无数据' />}
     </div>
 ))
 

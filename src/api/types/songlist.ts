@@ -74,14 +74,6 @@ export interface ISonglist {
   userId: number
 }
   
-interface TrackId {
-    id: number
-    v: number
-    t: number
-    at: number
-    alg?: any
-}
-  
 export interface Track {
     name: string
     id: number
@@ -126,13 +118,55 @@ export interface Track {
   interface OriginSongSimpleDatum {
     songId: number
     name: string
-    artists: Artist[]
-    albumMeta: Artist
+    artists: IArtist[]
+    albumMeta: IArtist
+  }
+
+  export interface IAlbum {
+    artist?: IArtist
+    artists?: IArtist[]
+    blurPicUrl?: string
+    copyrightId?: number
+    description?: string
+    id: number
+    mark?: number
+    name: string
+    picId?: number
+    picUrl: string
+    publishTime?: number
+    size?: number
+    status?: number
+    subType?: string
+    type?: string
+  }
+  export interface IMusic {
+    album: IAlbum
+    alias?: string[]
+    artists: IArtist[]
+    copyrightId?: number
+    duration: number
+    fee?: number
+    ftype?: number
+    id: number
+    mark?: number
+    mvid?: number
+    name: string
+    status?: number
+    picUrl?: string
   }
   
-  interface Artist {
+  export interface IArtist {
+    albumSize: number
     id: number
+    img1v1Id: number
+    img1v1Url: string
+    musicSize: number
     name: string
+    picId: number
+    picUrl: string
+    topicPerson: number
+    alia?: string[]
+    alias?: string[]
   }
   
   interface H {
