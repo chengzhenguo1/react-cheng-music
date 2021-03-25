@@ -1,19 +1,27 @@
-import React, { memo } from 'react'
-import { useAsync } from 'react-use'
+import React, { memo, useEffect } from 'react'
+import { useAsyncFn } from 'react-use'
 
+import { Skeleton } from 'antd'
 import recommentApi from '../../../api/recomment'
 
 import SwiperList from '../../../components/Swipers/index'
-import SongList from './SongList'
+import List from './List'
 
 const Recommend: React.FC = memo(() => {
-    const { value: bannerList } = useAsync(recommentApi.getBanners)
+    const [state, getBannersFn] = useAsyncFn(recommentApi.getBanners)
+
+    useEffect(() => {
+        getBannersFn()
+    }, [])
+
     return (
         <div>
             {/* 轮播图 */}
-            <SwiperList banners={bannerList} />
+            {
+                state.loading ? <Skeleton /> : <SwiperList banners={state.value} />
+            }
             {/* 推荐歌单 */}
-            <SongList />
+            <List />
         </div>
     )
 })

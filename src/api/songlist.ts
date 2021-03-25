@@ -1,11 +1,16 @@
 import axios from '../utils/axios'
 
-import { ISonglist, IsongComment, IMusic } from './types/songlist'
+import {
+ ISonglist, IsongComment, IGetSonglistsRequest, ICategory, ICategories,
+} from './types/songlist'
 
 type GetSongListFn = (id:string) => Promise<ISonglist>
 type GetSongCommentFn = (id:string, page?:number, limit?:number) => Promise<IsongComment>
 type GetUserSonglistFn = (uid:number) => Promise<{create: ISonglist[]; collect: ISonglist[] }>
-type GetRecommentDaily = () => Promise<IMusic>
+type GetRHighQualityFn = (cat:string) => Promise<ISonglist>
+type GetSonglistsFn = (params:IGetSonglistsRequest) => Promise<{playlists:ISonglist[], total:number}>
+type GetSonglistHotCatsFn = ()=> Promise<ICategory[]>
+type GetCategoriesFn = ()=> Promise<ICategories>
 
 /* 获取歌单列表 */
 const getSongList:GetSongListFn = async (id) => {
@@ -61,9 +66,61 @@ const getRecommendDaily = async () => {
     return res.data.dailySongs
 }
 
+/* 获取精品歌单头部 */
+const getRHighQuality :GetRHighQualityFn = async (cat = '全部') => {
+    const res = await axios({
+        url: '/top/playlist/highquality',
+        params: {
+            cat,
+            limit: 1,
+        },
+    })
+    return res?.playlists?.[0]
+}
+
+/* 获取精品歌单部分 */
+
+const getSonglists: GetSonglistsFn = async ({
+ cat, order, limit = 100, offset = 0, 
+}) => {
+    const res = await axios({
+      url: '/top/playlist',
+      params: {
+        cat,
+        order,
+        limit,
+        offset,
+      },
+    })
+    return res
+  }
+
+/* 获取热门标签 */
+  const getSonglistHotCats: GetSonglistHotCatsFn = async () => {
+    const res = await axios({
+      url: '/playlist/hot',
+    })
+  
+    return res.tags
+  }
+
+  const getCategories:GetCategoriesFn = async () => {
+      const res = await axios({
+          url: '/playlist/catlist',
+      })
+      return {
+        categories: res.categories,
+        sub: res.sub,
+      }
+  }
+
 export default {
     getSongList,
     getSongComment,
     getUserSonglist,
     getRecommendDaily,
+    getRHighQuality,
+    getSonglists,
+    getSonglistHotCats,
+    getCategories,
 }

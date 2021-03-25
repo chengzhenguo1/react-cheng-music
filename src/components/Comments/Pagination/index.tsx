@@ -1,27 +1,35 @@
-import React, { memo, useCallback } from 'react'
+import React, { memo, useCallback, useState } from 'react'
 
-import { Pagination as AntdPagination } from 'antd'
+import { Pagination } from 'antd'
 import './index.less'
 
 interface IProps{
     total?: number
+    count?: number
+    currentPage?: number
     OnchangePageFn: (page:number)=>void
 }
 
-const Pagination: React.FC<IProps> = memo(({ total = 0, OnchangePageFn }) => {
+const MyPagination: React.FC<IProps> = memo(({
+ total = 0, OnchangePageFn, count = 30, currentPage = 1, 
+}) => {
+    const [current, setCurrent] = useState(currentPage)
+
     const changePage = useCallback(
         (e:number) => {
             OnchangePageFn(e)
+            setCurrent(e)
         },
         [],
     )
 
     return (
         <div className='pagination'>
-            <AntdPagination 
-              defaultCurrent={1} 
-              total={total - (total % 30)} 
-              defaultPageSize={20} 
+            <Pagination
+              current={current}
+              defaultCurrent={1}
+              total={total - (total % count)} 
+              defaultPageSize={count} 
               onChange={changePage} 
               showSizeChanger={false} 
               hideOnSinglePage />
@@ -29,4 +37,4 @@ const Pagination: React.FC<IProps> = memo(({ total = 0, OnchangePageFn }) => {
 )
  })
 
-export default Pagination
+export default MyPagination

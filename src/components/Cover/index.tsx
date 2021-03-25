@@ -11,7 +11,7 @@ interface IProps {
     name: string 
     playCount?: number
     playType?: string
-    picUrl: string
+    picUrl?: string
     pid: string | number
     path: string
 }

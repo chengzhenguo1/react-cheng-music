@@ -6,7 +6,7 @@ import Title from '../../../../components/Title/index'
 import recommentApi from '../../../../api/recomment'
 import Cover from '../../../../components/Cover/index'
 
-const SongList: React.FC = memo(() => {
+const List: React.FC = memo(() => {
     const { value: recommentData } = useAsync(recommentApi.getRecommentList)
     return (
         <div>
@@ -22,4 +22,4 @@ const SongList: React.FC = memo(() => {
 )
  })
 
-export default SongList
+export default List

@@ -21,6 +21,28 @@ export interface Comments {
   }[] // 子评论
 }
 
+// eslint-disable-next-line no-shadow
+enum ORDER {
+  HOT = 'hot',
+  NEW = 'new',
+}
+export interface IGetSonglistsRequest {
+  cat?: string
+  order?: ORDER
+  limit?: number
+  offset?: number
+}
+
+// 热门标签响应
+
+export interface ICategory{
+  activity: boolean
+  category: number
+  hot: boolean
+  name: string
+  type: number
+}
+
 // 评论用户信息
 export interface UserInfo {
   nickname: string
@@ -32,6 +54,12 @@ export interface BeRepliedUser{
   nickname: string
   beRepliedCommentId: number
   avatarUrl: string
+}
+
+/* 歌单标签类别 */
+export interface ICategories {
+  categories: any
+  sub: ICategory[]
 }
 
 /* 歌单开始 */
