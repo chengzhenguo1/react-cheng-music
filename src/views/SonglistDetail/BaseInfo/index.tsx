@@ -6,11 +6,11 @@ import './index.less'
 import {
  Image, Avatar, 
 } from 'antd'
-import { Playlist } from '../../../api/types/songlist'
+import { IPlaylist } from '../../../api/types/songlist'
 import { formatCount } from '../../../utils/format'
 
 interface IProps {
-    data?: Playlist
+    data?: IPlaylist
     // onPlayAll: (autoPlay?: boolean) => void
 }
 
@@ -33,14 +33,18 @@ const SongLists: React.FC<IProps> = memo(({ data }) => (
             <div className='info-btn'>播放全部</div>
             <div className='info-tags'>
                 <span>标签：</span>
-                {data?.tags.map((item) => (
+                {
+                    data?.tags.length > 1
+                ? data?.tags.map((item:any) => (
                     <Fragment key={item}>
                         <Link to='/'>
                             {item}
                         </Link>
                         <i style={{ display: 'none' }}>/</i>
                     </Fragment>
-                     ))}
+                     ))
+                     : <span>无</span>
+                }
             </div>
             <div className='info-count'>
                 <div>

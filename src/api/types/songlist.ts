@@ -35,65 +35,52 @@ export interface BeRepliedUser{
 }
 
 /* 歌单开始 */
-export interface ISongList {
-    code: number
-    relatedVideos?: any
-    playlist: Playlist
-    urls?: any
-    privileges: any[]
-}
-
-export interface Playlist {
-    id: number
-    name: string
-    coverImgId: number
-    coverImgUrl: string
-    coverImgIdStr: string
-    adType: number
+export interface ISonglist {
+  adType: number
+  backgroundCoverId: number
+  cloudTrackCount: number
+  commentCount: number
+  coverImgUrl: string
+  picUrl?: string
+  createTime: number
+  copywriter?: string
+  creator: {
+    avatarUrl: string
+    nickname: string
     userId: number
-    createTime: number
-    status: number
-    opRecommend: boolean
-    highQuality: boolean
-    newImported: boolean
-    updateTime: number
-    trackCount: number
-    specialType: number
-    privacy: number
-    trackUpdateTime: number
-    commentThreadId: string
-    playCount: number
-    trackNumberUpdateTime: number
-    subscribedCount: number
-    cloudTrackCount: number
-    ordered: boolean
-    description: string
-    tags: string[]
-    updateFrequency?: any
-    backgroundCoverId: number
-    backgroundCoverUrl?: any
-    titleImage: number
-    titleImageUrl?: any
-    englishTitle?: any
-    subscribers: Subscriber[]
-    subscribed?: any
-    creator: Subscriber
-    tracks: Track[]
-    videoIds?: any
-    videos?: any
-    trackIds: TrackId[]
-    shareCount: number
-    commentCount: number
-    remixVideo?: any
   }
+  description: string
+  highQuality: boolean
+  id: number
+  name: string
+  newImported: boolean
+  opRecommend: boolean
+  ordered: boolean
+  playCount: number
+  privacy: number
+  shareCount: number
+  specialType: number
+  status: number
+  subscribed: boolean
+  subscribedCount: number
+  subscribers: []
+  tags: string[]
+  trackCount: number
+  trackIds: []
+  trackNumberUpdateTime: number
+  trackUpdateTime: number
+  tracks: Track[]
+  updateTime: number
+  userId: number
+}
   
-  interface TrackId {
+interface TrackId {
     id: number
     v: number
     t: number
     at: number
     alg?: any
-  }
+}
   
 export interface Track {
     name: string
@@ -169,39 +156,6 @@ export interface Track {
     name: string
     tns: any[]
     alias: any[]
-  }
-  
-  interface Subscriber {
-    defaultAvatar: boolean
-    province: number
-    authStatus: number
-    followed: boolean
-    avatarUrl: string
-    accountStatus: number
-    gender: number
-    city: number
-    birthday: number
-    userId: number
-    userType: number
-    nickname: string
-    signature: string
-    description: string
-    detailDescription: string
-    avatarImgId: number
-    backgroundImgId: number
-    backgroundUrl: string
-    authority: number
-    mutual: boolean
-    expertTags?: any
-    experts?: any
-    djStatus: number
-    vipType: number
-    remarkName?: any
-    authenticationTypes: number
-    avatarDetail?: any
-    anchor: boolean
-    avatarImgIdStr: string
-    backgroundImgIdStr: string
   }
 
   /* 歌单结束 */

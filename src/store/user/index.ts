@@ -11,6 +11,11 @@ class User {
 
     constructor() {
         makeAutoObservable(this)
+        const user = window.sessionStorage.getItem('user')
+        if (user) {
+            this.user = JSON.parse(user)
+            this.isLogin = true
+        }
     }
     // 登录框的显示与隐藏
     changeDiaLogShow(isShow:boolean):void {
@@ -20,12 +25,14 @@ class User {
     // 保存登录信息
     loginUser(data:ILoginResult):void {
         this.user = data
+        window.sessionStorage.setItem('user', JSON.stringify(this.user))
         this.isLogin = true
         this.showLoginDialog = false
     }
 
     logoutUser():void {
         this.user = {}
+        window.sessionStorage.removeItem('user')
         this.isLogin = false
     }
 }
