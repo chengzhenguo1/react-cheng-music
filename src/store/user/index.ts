@@ -1,29 +1,33 @@
 // user/user.ts
 import { makeAutoObservable } from 'mobx'
+import { ILoginResult } from '../../api/types/auth'
 
-import { applyMixins } from '../../utils/mixins'
-import { UserState, UserActions, UserGetter } from '../types/user'
-import actions from './actions'
-
-class UserStore implements UserState, UserActions, UserGetter {
-    // state
-    name = 'asad'
-    password = ''
+class User {
+    // 登录框的显示与隐藏
+    showLoginDialog = false
+    // 用户信息
+    user:ILoginResult = {}
+    isLogin = false
 
     constructor() {
-        // 观察全部数据
         makeAutoObservable(this)
     }
-    // getter
-    get userInfo():string {
-        return `${this.name}${this.password}`
+    // 登录框的显示与隐藏
+    changeDiaLogShow(isShow:boolean):void {
+        this.showLoginDialog = isShow
     }
 
-    // action
-     /* eslint-disable-next-line */
-    loginAction(this: { name: string, password: string }, payload: { name: string; password: string; }): void { }
+    // 保存登录信息
+    loginUser(data:ILoginResult):void {
+        this.user = data
+        this.isLogin = true
+        this.showLoginDialog = false
+    }
+
+    logoutUser():void {
+        this.user = {}
+        this.isLogin = false
+    }
 }
 
-applyMixins(UserStore, [actions])
-
-export default UserStore
+export default User

@@ -1,15 +1,8 @@
-import UserStore from './user/index'
-import { UserActions } from './types/user'
+import React from 'react'
+import User from './user/index'
 
-const user = new UserStore()
-
-// 定义仓库类型
-export interface StoreType {
-    user: UserActions 
-}
-
-const stores: StoreType = {
-    user,
-}
+const stores = React.createContext({
+    User: new User(),
+})
 
 export default stores

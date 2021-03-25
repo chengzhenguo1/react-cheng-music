@@ -1,19 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { Provider } from 'mobx-react'
 
-import stores from './store/index'
 import './utils/autoRem.js'
 import '@/styles/variables.css'
 import './assets/normalize.css'
 import './styles/media.less'
 import 'antd/dist/antd.less'
-
 import App from './views/App'
 
 ReactDOM.render(
-    <Provider {...stores}>
-        <App />
-    </Provider>,
+    <App />,
   document.getElementById('root'),
 )

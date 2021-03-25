@@ -4,11 +4,23 @@ import './index.less'
 
 import { CaretDownOutlined } from '@ant-design/icons'
 
-export default memo(function Name() {
-    return (
-        <div className='name'>
-            未登录
-            <CaretDownOutlined style={{ 'marginLeft': '4px' }} />
-        </div>
-    )
-})
+interface IProps {
+    username?: string
+    id?: number
+}
+
+const Name:React.FC<IProps> = memo(({ username, id }) => (
+    <div className='name'>
+        {username ? (
+            <span>{username}</span>
+        ) 
+        : (
+            <>
+                未登录
+            </>
+        )}
+        <CaretDownOutlined style={{ marginLeft: '4px' }} />
+    </div>
+    ))
+
+export default Name

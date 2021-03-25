@@ -16,12 +16,12 @@ const { TabPane } = Tabs
 const SongListDetail: React.FC = memo(() => {
     const { id } = useParams<IDictionary<string>>()
     
-    const { value: songList } = useAsync(async () => {
+    const songList = useAsync(async () => {
         const res = await SongListApi.getSongList(id)
         return res
       }, [id])
-
-      const [{ value: songComment }, getSongComment] = useAsyncFn(async (page) => { 
+      
+      const [songComment, getSongComment] = useAsyncFn(async (page?) => { 
         const res = await SongListApi.getSongComment(id, page)
         return res
       }, [])
@@ -37,22 +37,22 @@ const SongListDetail: React.FC = memo(() => {
     return (
         <div className='song-list-detail'>
             <div className='song-baseinfo'>
-                <BaseInfo data={songList?.playlist} />
+                <BaseInfo data={songList.value?.playlist} />
             </div>
             <div className='song-content'>
                 <Tabs defaultActiveKey='1' className='song-tabs'>
                     <TabPane tab='歌曲列表' key='1'>
-                        <Musiclist data={songList?.playlist.tracks} />
+                        <Musiclist data={songList.value?.playlist.tracks} />
                     </TabPane>
                     <TabPane tab='评论' key='2'>
                         <Comments
                           onChangePage={onChangePage}
-                          total={songComment?.total} 
+                          total={songComment.value?.total} 
                           type={LickType.LIST}
-                          moreHot={songComment?.moreHot}
-                          comments={songComment?.comments}
-                          hotComments={songComment?.hotComments}
-                          more={songComment?.more} />
+                          moreHot={songComment.value?.moreHot}
+                          comments={songComment.value?.comments}
+                          hotComments={songComment.value?.hotComments}
+                          more={songComment.value?.more} />
                     </TabPane>
                 </Tabs>
             </div>

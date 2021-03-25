@@ -5,11 +5,14 @@ import './index.less'
 import { Avatar as AvatarComponent } from 'antd'
 import { UserOutlined } from '@ant-design/icons'
 
+interface Iprops{
+    picurl?:string
+}
 
-export default memo(function Avatar() {
-    return (
-        <div className='avatar'>
-            <AvatarComponent  size={30} icon={<UserOutlined />} />
-        </div>
-    )
-})
+const Avatar:React.FC<Iprops> = memo(({ picurl }) => (
+    <div className='avatar'>
+        <AvatarComponent size={30} icon={<UserOutlined />} src={picurl} />
+    </div>
+    ))
+
+export default Avatar
