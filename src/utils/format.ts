@@ -18,6 +18,7 @@ export function fommatArtist(artist = []): string {
    return artist.map((item:any) => item.name).join(' / ')
 }
 
-export function formatTimer(time:number): string {
+export function formatTimer(time?:number): string {
+  time = time ?? 0
   return `${dayjs.unix(time).format('mm:ss')}`
 }

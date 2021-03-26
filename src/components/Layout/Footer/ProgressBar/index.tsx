@@ -15,7 +15,7 @@ const ProgressBar: React.FC = () => {
 
     /* 滑动进度条 */
     const handleChangeProgress = useCallback(
-        (e:any) => {
+        (e:number) => {
             setTime(e)
             Music.setPlayProgress(e)
         },

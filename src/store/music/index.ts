@@ -1,5 +1,5 @@
 // user/user.ts
-import { makeAutoObservable } from 'mobx'
+import { makeAutoObservable, toJS } from 'mobx'
 import { MODE } from '../../constants/play'
 import { parseMusicUrl } from '../../utils/parseUrl'
 
@@ -71,12 +71,15 @@ class Music {
     // 播放列表设置
     setPlayList(id: number):void {
         /* 查看列表中是否有当前歌曲 */
-        /* const index = this.playList?.findIndex((item) => item.musicId === id)
-
+        const playList = toJS(this.playList)
+        const index = playList?.findIndex((item) => item.musicId === id)
+        console.log(this.playList)
         if (index === -1) {
-            this.playList = [...this.playList, this.currentSong]
-        } */
-        this.playList.push(this.currentSong)
+           this.playList = [...playList, this.currentSong]
+        } else {
+            this.playList = playList
+        }
+        console.log(this.playList)
     }
     // 设置播放信息
     setPlayInfo(info:any, controls: any):void {
@@ -85,10 +88,12 @@ class Music {
     }
     // 设置播放进度
     setPlayProgress(timer: number):void {
-        console.log(timer)
         this.controls.seek(timer)
     }
-
+    // 设置播放音量
+    setPlayVolume(value:number):void {
+        this.controls.volume(value)
+    }
     // 清空播放列表
     clearPlayList():void {
         this.playList = []
