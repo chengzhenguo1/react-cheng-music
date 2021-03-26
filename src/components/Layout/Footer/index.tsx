@@ -16,7 +16,7 @@ import './index.less'
 
 const Footer = () => {
     const { Music } = useStores()
-
+    const { currentSong } = Music
     return (
         <div className='footer'>
             {/* 进度条 */}
@@ -26,17 +26,17 @@ const Footer = () => {
             {/* 信息 */}
             <div className='footer-wrap'>
                 <div className='wrap-pic'>
-                    {Music.audioInfo.paused && <DoubleRightOutlined />}
-                    {!Music.audioInfo.paused && <DoubleLeftOutlined />}
-                    <Image src={`${Music.authorInfo.picUrl}?param=40y40`} preview={false} width={40} height={40} placeholder />
+                    {Music?.audioInfo?.paused && <DoubleRightOutlined />}
+                    {!Music?.audioInfo?.paused && <DoubleLeftOutlined />}
+                    <Image src={`${currentSong.authorInfo.picUrl}?param=40y40`} preview={false} width={40} height={40} placeholder />
                 </div>
                 <div>
                     <div className='wrap-info'>
-                        <span>{Music.authorInfo.name}</span>
-                        <Artist name={Music.authorInfo.author} id={1} />
+                        <span>{currentSong?.authorInfo.name}</span>
+                        <Artist name={currentSong?.authorInfo.author} id={1} />
                     </div>
                     <div className='wrap-time'>
-                        <AudioTimer sumTime={Music.audioInfo.duration} currentTime={Music.audioInfo.time} />
+                        <AudioTimer sumTime={Music?.audioInfo.duration} currentTime={Number(Music.audioInfo.time)} />
                     </div>
                 </div>
             </div>

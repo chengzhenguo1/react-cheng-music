@@ -14,8 +14,8 @@ export function formatCount(count = 0):string {
 }
 
 /* 解析艺人名称 */
-export function fommatArtist(artist = []): string {
-   return artist.map((item:any) => item.name).join(' / ')
+export function fommatArtist(artist: any): string {
+   return artist?.map((item:any) => item.name).join(' / ')
 }
 
 export function formatTimer(time?:number): string {

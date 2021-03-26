@@ -21,7 +21,7 @@ const { Music } = useStores()
  const onDoubleClick = (e:Track) => {
    Music.playMusic(e.id, {
     picUrl: e.al.picUrl, 
-    name: e.al.name, 
+    name: e.name, 
     id: e.al.id, 
     author: fommatArtist(e.ar), 
   })

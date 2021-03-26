@@ -5,8 +5,8 @@ import { parseMusicUrl } from '../../utils/parseUrl'
 
 export interface MusicType {
     musicId: number
-    music: any
     url: string
+    authorInfo: AuthorType
 }
 
 export interface AuthorType {
@@ -31,8 +31,8 @@ class Music {
     // 当前播放歌曲
     currentSong: MusicType = {
         musicId: 0,
-        music: '',
         url: '', 
+        authorInfo: initAuthor,
     }
     // 歌曲信息
     audioInfo = {
@@ -41,8 +41,6 @@ class Music {
         paused: true,
         time: true,
     }
-    // 作者信息
-    authorInfo = initAuthor
     // 播放模式
     playMode: MODE = MODE.PLAY_IN_ORDER
     // 播放列表
@@ -57,8 +55,14 @@ class Music {
     playMusic(musicId: number, authorInfo:AuthorType):void {
         this.currentSong.musicId = musicId
         this.currentSong.url = parseMusicUrl(musicId)
-        this.authorInfo = authorInfo
-        this.setPlayList(musicId)
+        this.currentSong.authorInfo = authorInfo
+        this.setPlayList(toJS(this.currentSong))
+    }
+    /* 播放列表的歌曲 */
+    playListMusic(index:number): void {
+        this.currentSong.musicId = this.playList[index].musicId
+        this.currentSong.url = this.playList[index].url
+        this.currentSong.authorInfo = this.playList[index].authorInfo
     }
     /* 暂停--播放 */
     setMusicState(flag:boolean):void {
@@ -69,17 +73,17 @@ class Music {
         }
     }
     // 播放列表设置
-    setPlayList(id: number):void {
+    setPlayList(data:any):void {
         /* 查看列表中是否有当前歌曲 */
-        const playList = toJS(this.playList)
-        const index = playList?.findIndex((item) => item.musicId === id)
-        console.log(this.playList)
+        const index = this.playList?.findIndex((item) => item.musicId === data.musicId)
         if (index === -1) {
-           this.playList = [...playList, this.currentSong]
-        } else {
-            this.playList = playList
+           this.playList = this.playList.concat(data)
         }
-        console.log(this.playList)
+    }
+    // 切换播放类型
+    setPlayMode(type:MODE): void {
+        console.log(type)
+        this.playMode = type
     }
     // 设置播放信息
     setPlayInfo(info:any, controls: any):void {
@@ -88,11 +92,11 @@ class Music {
     }
     // 设置播放进度
     setPlayProgress(timer: number):void {
-        this.controls.seek(timer)
+        this.controls?.seek(timer)
     }
     // 设置播放音量
     setPlayVolume(value:number):void {
-        this.controls.volume(value)
+        this.controls?.volume(value)
     }
     // 清空播放列表
     clearPlayList():void {

@@ -1,24 +1,28 @@
-import React, { memo, useState } from 'react'
+import React from 'react'
+import { observer } from 'mobx-react'
 
 import { OrderedListOutlined, RedoOutlined, RetweetOutlined } from '@ant-design/icons'
-
 import { Tooltip } from 'antd'
-import { MODE_TYPE, MODE } from '../../../../constants/play'
+import useStores from '../../../../hooks/useStores'
+import { MODE, MODE_TYPE } from '../../../../constants/play'
 
-const PlayMode: React.FC = memo(() => {
-    const [state, setstate] = useState(MODE.SHUFFLE_PLAYBACK)
-    const handleChangePlayMode = () => {
-        console.log(MODE.SHUFFLE_PLAYBACK)
+const PlayMode: React.FC = () => {
+    const { Music } = useStores()
+    const { playMode } = Music
+
+    const handleChangePlayMode = (type:MODE) => {
+        Music.setPlayMode(type)
     }
+
     return (
         <>
-            <Tooltip placement='top' title={MODE_TYPE[state].mode}>
-                {MODE_TYPE[state].mode === '顺序播放' && <OrderedListOutlined onClick={handleChangePlayMode} />}
-                {MODE_TYPE[state].mode === '循环播放' && <RedoOutlined onClick={handleChangePlayMode} />}
-                {MODE_TYPE[state].mode === '随机播放' && <RetweetOutlined onClick={handleChangePlayMode} />}
+            <Tooltip placement='top' title={MODE_TYPE[playMode].mode}>
+                {playMode === 'PLAY_IN_ORDER' && <OrderedListOutlined onClick={() => handleChangePlayMode(MODE.SINGLE_CYCLE)} />}
+                {playMode === 'SINGLE_CYCLE' && <RedoOutlined onClick={() => handleChangePlayMode(MODE.SHUFFLE_PLAYBACK)} />}
+                {playMode === 'SHUFFLE_PLAYBACK' && <RetweetOutlined onClick={() => handleChangePlayMode(MODE.PLAY_IN_ORDER)} />}
             </Tooltip>
         </>
 )
- })
+}
 
-export default PlayMode
+export default observer(PlayMode)

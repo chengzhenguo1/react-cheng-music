@@ -18,7 +18,7 @@ const App: React.FC = function App() {
     const [audio, state, controls, ref] = useAudio({
         src: currentSong.url,
         autoPlay: true,
-        /* onEnded: () => playNextMusic(), */
+        onEnded: () => playNextMusic(),
       })
 
     const playNextMusic = useCallback(() => {
@@ -26,9 +26,9 @@ const App: React.FC = function App() {
             /* 顺序播放 */
             case MODE.PLAY_IN_ORDER: {
                 const idx = playList.findIndex(({ musicId }: MusicType) => musicId === currentSong.musicId)
-                if (playList.length) {
+                if (playList.length > 0) {
                   const nextIdx = idx > -1 ? (idx + 1) % playList.length : 0
-                  Music.playMusic(nextIdx)
+                  Music.playListMusic(nextIdx)
                 }
                 return
             }
@@ -41,7 +41,7 @@ const App: React.FC = function App() {
             case MODE.SHUFFLE_PLAYBACK: {
                 if (playList.length) {
                     const randomIdx = Math.floor(Math.random() * playList?.length)
-                    Music.playMusic(randomIdx)
+                    Music.playListMusic(randomIdx)
                 }
                 break
             }
