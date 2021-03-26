@@ -1,4 +1,7 @@
 .footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     position: fixed;
     left: 0;
     right: 0;
@@ -7,4 +10,85 @@
     z-index: 10;
     background-color: var(--footer-bgcolor);
     border-top: 1px solid var(--footer-linecolor);
+    padding: 0 10px;
+
+    .progress {
+        position: absolute;
+        top: -16px;
+        left: 0;
+        width: 100%;
+    }
+
+    .footer-wrap {
+        display: flex;
+
+        .wrap-pic {
+            position: relative;
+            border-radius: 5px;
+            margin-right: 10px;
+            .anticon {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: absolute;
+                width: 40px;
+                height: 40px;
+                color: #fff;
+                top: 0;
+                left: 0;
+                background-color: rgba(0, 0, 0, 0.5);
+                border-radius: 5px;
+
+                &.anticon-double-right {
+                    transform: rotate(270deg);
+                }
+
+                &.anticon-double-left {
+                    transform: rotate(270deg);
+                }
+            }
+        }
+
+        .wrap-info {}
+    }
+
+    .other-ation {
+        display: flex;
+        align-items: center;
+
+        .anticon {
+            margin-left: 14px;
+            font-size: 14px;
+            color: #888;
+            cursor: pointer;
+
+            &.anticon-menu-fold {
+                font-size: 13px;
+            }
+        }
+
+        .anticon-notification {
+            margin-right: 5px;
+        }
+    }
+
+    /* 进度条 */
+    .ant-slider-track,
+    .ant-slider:hover .ant-slider-track,
+    .ant-slider:hover .ant-slider-handle:not(.ant-tooltip-open),
+    .ant-slider-handle {
+        background-color: var(--primary-color);
+        border: none;
+    }
+
+    .ant-slider-handle {
+        width: 8px;
+        height: 8px;
+        margin-top: -1px;
+    }
+
+    .ant-slider-track,
+    .ant-slider-step {
+        height: 3px;
+    }
 }

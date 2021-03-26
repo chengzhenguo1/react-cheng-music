@@ -28,8 +28,8 @@ const songList = memo(() => {
     /* 切换类别，清空页码数 */
     const handleCatSelect = (cat:string) => {
         getRHighQualityFn(cat)
-        setSelectedCat(cat)
         getSongListsFn({ cat, offset: (page - 1) * 100 })
+        setSelectedCat(cat)
         setPage(PAGE)
     }
 

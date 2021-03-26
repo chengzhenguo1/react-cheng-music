@@ -11,7 +11,7 @@ interface Iprops{
 
 const Avatar:React.FC<Iprops> = memo(({ picurl }) => (
     <div className='avatar'>
-        <AvatarComponent size={30} icon={<UserOutlined />} src={picurl} />
+        <AvatarComponent size={30} icon={<UserOutlined />} src={picurl || ''} />
     </div>
     ))
 

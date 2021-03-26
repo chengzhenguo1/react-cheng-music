@@ -1,19 +1,32 @@
-import React, { memo } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
+import { observer } from 'mobx-react'
 
 import dayjs from 'dayjs'
 import { Table } from 'antd'
 import { DownloadOutlined } from '@ant-design/icons'
 import { ColumnsType } from 'antd/es/table'
+import { fommatArtist } from '../../utils/format'
 import { Track } from '../../api/types/songlist'
+import useStores from '../../hooks/useStores'
 import './index.less'
 
 interface IProps {
     data?: Track[]
 }
 
-const MusicList: React.FC<IProps> = memo(({ data }) => {
+const MusicList: React.FC<IProps> = ({ data }) => {
  const musicUrl = 'https://music.163.com/song/media/outer/url?id='
+const { Music } = useStores()
+ const onDoubleClick = (e:Track) => {
+   Music.playMusic(e.id, {
+    picUrl: e.al.picUrl, 
+    name: e.al.name, 
+    id: e.al.id, 
+    author: fommatArtist(e.ar), 
+  })
+ }
+
  const columns: ColumnsType<Track> = [
     {
       dataIndex: 'index',
@@ -46,7 +59,7 @@ const MusicList: React.FC<IProps> = memo(({ data }) => {
       width: '15%',
       ellipsis: true,
       render: (value, { ar }, index: number) => (
-        ar.map((item) => <Link to='/' key={item.name} className='text-gray'>{item.name}</Link>)
+        ar.map((item) => <Link to='/' key={item.name} className='text-gray'>{`${item.name}`}</Link>)
         ),
     },
     {
@@ -65,8 +78,16 @@ const MusicList: React.FC<IProps> = memo(({ data }) => {
     },
   ];
    return (
-       <Table<Track> rowKey='id' columns={columns} dataSource={data} pagination={false} className='music-table' />
+       <Table<Track> 
+         rowKey='id'
+         columns={columns} 
+         dataSource={data} 
+         pagination={false} 
+         className='music-table'  
+         onRow={(record) => ({
+          onDoubleClick: (event) => { onDoubleClick(record) },
+        })} />
 )
- })
+ }
 
-export default MusicList
+export default observer(MusicList)
