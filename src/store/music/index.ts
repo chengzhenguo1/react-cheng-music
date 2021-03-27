@@ -2,10 +2,12 @@
 import { makeAutoObservable, toJS } from 'mobx'
 import { MODE } from '~/constants/play'
 import { parseMusicUrl } from '~/utils/parseUrl'
+import { Track } from '~/api/types/songlist'
 
 export interface MusicType {
     musicId: number
     url: string
+    time?: number
     authorInfo: AuthorType
 }
 
@@ -23,47 +25,76 @@ const initAuthor = {
     author: '',
 }
 
+const initSong: MusicType = {
+    musicId: 0,
+    url: '', 
+    authorInfo: initAuthor,
+    time: 0,
+}
+
 class Music {
     // 歌词的显示与隐藏
     showLyrics = false
     // 
     controls:any = null
     // 当前播放歌曲
-    currentSong: MusicType = {
-        musicId: 0,
-        url: '', 
-        authorInfo: initAuthor,
-    }
+    currentSong: MusicType = initSong
     // 歌曲信息
     audioInfo = {
         duration: 0,
         muted: false,
         paused: true,
-        time: true,
+        time: 0,
     }
     // 播放模式
     playMode: MODE = MODE.PLAY_IN_ORDER
     // 播放列表
     playList: MusicType[] = []
     // 播放历史记录
-    HistoryList: MusicType[] = []
+    historyList: MusicType[] = []
 
     constructor() {
         makeAutoObservable(this)
     }
     // 设置正在播放的歌曲
-    playMusic(musicId: number, authorInfo:AuthorType):void {
+    playMusic(musicId: number, time:number, authorInfo:AuthorType):void {
         this.currentSong.musicId = musicId
         this.currentSong.url = parseMusicUrl(musicId)
         this.currentSong.authorInfo = authorInfo
-
-        this.setPlayList(toJS(this.currentSong))
+        this.setPlayList(toJS({ ...this.currentSong, time }))
+    }
+    /* 播放列表设置 */
+    setPlayList(data:MusicType):void {
+        this.setList('playList', data)
     }
     /* 播放列表的歌曲 */
     playListMusic(index:number): void {
         this.currentSong.musicId = this.playList[index].musicId
         this.currentSong.url = this.playList[index].url
         this.currentSong.authorInfo = this.playList[index].authorInfo
+        this.currentSong.time = this.playList[index].time
+    }
+    /* 添加到全部歌单 */
+    playAll(data?: Track[]):void {
+        data?.forEach((item) => {
+            const authorInfo = {
+                picUrl: item.al.picUrl,
+                name: item.name,
+                author: item.ar[0].name,
+                id: item.al.id,
+            }
+            const obj = {
+                musicId: item.id,
+                url: parseMusicUrl(item.id), 
+                time: item.dt / 1000,
+                authorInfo,
+            }
+            this.setPlayList(obj) 
+        })
+
+        this.currentSong.musicId = this.playList[0].musicId
+        this.currentSong.url = parseMusicUrl(this.playList[0].musicId)
+        this.currentSong.authorInfo = this.playList[0].authorInfo
     }
     /* 暂停--播放 */
     setMusicState(flag:boolean):void {
@@ -73,17 +104,21 @@ class Music {
             this.controls?.pause()
         }
     }
-    // 播放列表设置
-    setPlayList(data:any):void {
+    // 设置历史记录
+    setHistory():void {
+        if (this.currentSong.musicId === 0) return
+       const data = this?.playList.find(({ musicId }) => musicId === this?.currentSong.musicId)
+       this.setList('historyList', toJS(data))
+    }
+    setList(key:string, data?:MusicType):void {
         /* 查看列表中是否有当前歌曲 */
-        const index = this.playList?.findIndex((item) => item.musicId === data.musicId)
+        const index = (this[key] as MusicType[])?.findIndex((item) => item?.musicId === data?.musicId)
         if (index === -1) {
-           this.playList = this.playList.concat(data)
+           this[key] = this[key].concat(data)
         }
     }
     // 切换播放类型
     setPlayMode(type:MODE): void {
-        console.log(type)
         this.playMode = type
     }
     // 设置播放信息
@@ -100,8 +135,13 @@ class Music {
         this.controls?.volume(value)
     }
     // 清空播放列表
-    clearPlayList():void {
-        this.playList = []
+    clearPlayList(type: string):void {
+        if (type === 'playList') {
+            this.playList = []
+            this.controls.pause()
+        } else {
+            this.historyList = []
+        }
     }
     // 设置歌词页面的显示和隐藏
     setLyricsShow(flag:boolean):void {

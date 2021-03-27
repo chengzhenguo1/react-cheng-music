@@ -6,9 +6,9 @@ import dayjs from 'dayjs'
 import { Table } from 'antd'
 import { DownloadOutlined } from '@ant-design/icons'
 import { ColumnsType } from 'antd/es/table'
-import { fommatArtist } from '../../utils/format'
-import { Track } from '../../api/types/songlist'
-import useStores from '../../hooks/useStores'
+import { fommatArtist } from '~/utils/format'
+import { Track } from '~/api/types/songlist'
+import useStores from '~/hooks/useStores'
 import './index.less'
 
 interface IProps {
@@ -20,11 +20,11 @@ const musicUrl = 'https://music.163.com/song/media/outer/url?id='
 const MusicList: React.FC<IProps> = ({ data }) => {
 const { Music } = useStores()
  const onDoubleClick = (e:Track) => {
-   Music.playMusic(e.id, {
+   Music.playMusic(e.id, e.dt / 1000, {
     picUrl: e.al.picUrl, 
     name: e.name, 
     id: e.al.id, 
-    author: fommatArtist(e.ar), 
+    author: fommatArtist(e.ar),
   })
  }
 
@@ -86,7 +86,7 @@ const { Music } = useStores()
          pagination={false} 
          className='music-table'  
          onRow={(record) => ({
-          onDoubleClick: (event) => { onDoubleClick(record) },
+         onDoubleClick: (event) => { onDoubleClick(record) },
         })} />
 )
  }

@@ -1,7 +1,7 @@
 import axios from '../utils/axios'
 
 import {
- ISonglist, IsongComment, IGetSonglistsRequest, ICategory, ICategories,
+ ISonglist, IsongComment, IGetSonglistsRequest, ICategory, ICategories, Track,
 } from './types/songlist'
 
 type GetSongListFn = (id:string) => Promise<ISonglist>
@@ -11,6 +11,7 @@ type GetRHighQualityFn = (cat:string) => Promise<ISonglist>
 type GetSonglistsFn = (params:IGetSonglistsRequest) => Promise<{playlists:ISonglist[], total:number}>
 type GetSonglistHotCatsFn = ()=> Promise<ICategory[]>
 type GetCategoriesFn = ()=> Promise<ICategories>
+type GetRecommendDailyFn = ()=> Promise<Track[]>
 
 /* 获取歌单列表 */
 const getSongList:GetSongListFn = async (id) => {
@@ -59,7 +60,7 @@ const getUserSonglist: GetUserSonglistFn = async (uid) => {
 }
 
 /* 获取每日推荐歌曲，需要登录 */
-const getRecommendDaily = async () => {
+const getRecommendDaily:GetRecommendDailyFn = async () => {
     const res = await axios({
         url: '/recommend/songs',
     })

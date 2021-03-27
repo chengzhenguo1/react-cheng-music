@@ -3,6 +3,7 @@ import { useAudio } from 'react-use'
 import { observer } from 'mobx-react'
 import { renderRoutes } from 'react-router-config'
 import { HashRouter, Switch } from 'react-router-dom'
+import { message } from 'antd'
 import useStores from '../hooks/useStores'
 
 import { MODE } from '../constants/play'
@@ -19,6 +20,8 @@ const App: React.FC = function App() {
         src: currentSong.url,
         autoPlay: true,
         onEnded: () => playNextMusic(),
+        onPlay: () => setMusicHistoryList(),
+        onError: () => { if (currentSong.musicId !== 0) { message.warning('无版权哦！') } },
       })
 
     const playNextMusic = useCallback(() => {
@@ -47,7 +50,15 @@ const App: React.FC = function App() {
             }
             default:
         }
-    }, [currentSong?.musicId, controls, ref])
+    }, [currentSong?.musicId, controls, ref, currentSong.url])
+
+    /* 播放开始设置历史记录 */
+    const setMusicHistoryList = useCallback(
+        () => {
+            Music.setHistory()
+        },
+        [ref, audio, currentSong],
+    )
 
     useEffect(() => {
         Music.setPlayInfo(state, controls)

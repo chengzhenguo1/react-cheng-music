@@ -12,7 +12,7 @@ import './index.less'
 
 const RecommendDaily = () => {
     const [state, getRecommendSongsFn] = useAsyncFn(songApi.getRecommendDaily)
-    const { User } = useStores()
+    const { User, Music } = useStores()
 
     const { isLogin } = User
 
@@ -22,6 +22,13 @@ const RecommendDaily = () => {
             getRecommendSongsFn()
         }
     }, [isLogin])
+
+    const playAll = useCallback(
+        () => {
+            Music.playAll(state.value)
+        },
+        [state, isLogin],
+    )
 
     /* 打开登录框 */
     const handleLoginDiagio = () => {
@@ -49,7 +56,7 @@ const RecommendDaily = () => {
                         </div>
                     </div>
                 </div>
-                <div className='play-all'>
+                <div className='play-all' onClick={playAll}>
                     播放全部
                 </div>
             </div>

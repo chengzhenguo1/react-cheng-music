@@ -61,7 +61,7 @@ const Footer = () => {
                 </Tooltip>
                 <PlayVolume />
             </div>
-            <PlayRecord isShow={recordShow} />
+            <PlayRecord isShow={recordShow} onClickAway={() => handleChangeRocord(false)} />
         </div>
     )
  }
