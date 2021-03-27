@@ -1,6 +1,6 @@
 // user/user.ts
 import { makeAutoObservable } from 'mobx'
-import { ILoginResult } from '../../api/types/auth'
+import { ILoginResult } from '~/api/types/auth'
 
 class User {
     // 登录框的显示与隐藏

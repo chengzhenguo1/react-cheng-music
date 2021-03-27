@@ -6,6 +6,9 @@
       "DOM.Iterable",
       "ESNext"
     ],
+    "paths": {
+      "~/*": ["./src/*"]
+    },
     "types": [
       "vite/client"
     ],
@@ -23,6 +26,6 @@
     "jsx": "react"
   },
   "include": [
-    "./src"
+    "./src",
   ]
 }

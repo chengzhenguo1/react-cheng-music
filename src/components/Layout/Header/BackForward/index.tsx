@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import { useHistory, useLocation } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 
 import './index.less'
 

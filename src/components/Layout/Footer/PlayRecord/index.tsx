@@ -1,9 +1,22 @@
-import React, { memo } from 'react'
+import React from 'react'
+import { observer } from 'mobx-react'
+import cn from 'classnames'
+import useStores from '~/hooks/useStores'
 
-const PlayRecord: React.FC = memo(() => (
-    <div>
-        历史记录
-    </div>
-))
+import './index.less'
 
-export default PlayRecord
+interface IProps{
+    isShow: boolean
+}
+
+const PlayRecord: React.FC<IProps> = ({ isShow }) => {
+    console.log(isShow)
+    const stores = useStores()
+    return (
+        <div className={cn('play-record', isShow ? 'show' : '')}>
+            历史记录
+        </div>
+)
+}
+
+export default observer(PlayRecord)

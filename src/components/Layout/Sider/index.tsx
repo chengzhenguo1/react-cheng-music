@@ -6,11 +6,11 @@ import { useAsyncFn } from 'react-use'
 import { observer } from 'mobx-react'
 
 import { Menu } from 'antd'
-import useStores from '../../../hooks/useStores'
+import useStores from '~/hooks/useStores'
 import './index.less'
-import songListApi from '../../../api/songlist'
-import { menuRoutes } from '../../../router/index'
-import { filterPath } from '../../../utils/filter'
+import songListApi from '~/api/songlist'
+import { menuRoutes } from '~/router/index'
+import { filterPath } from '~/utils/filter'
 import MenuTitle from './Title/index'
 
 const Silder = () => {

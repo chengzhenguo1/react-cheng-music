@@ -2,7 +2,7 @@ import React, { memo, Fragment } from 'react'
 import { Link } from 'react-router-dom'
 
 import { Menu } from 'antd'
-import { RouterConfig } from '../../../../router/index'
+import { RouterConfig } from '~/router/index'
 
 import Title from '../Title/index'
 

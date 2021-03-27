@@ -6,8 +6,8 @@ import './index.less'
 import {
  Image, Avatar, 
 } from 'antd'
-import { ISonglist } from '../../../api/types/songlist'
-import { formatCount } from '../../../utils/format'
+import { ISonglist } from '~/api/types/songlist'
+import { formatCount } from '~/utils/format'
 
 interface IProps {
     data?: ISonglist

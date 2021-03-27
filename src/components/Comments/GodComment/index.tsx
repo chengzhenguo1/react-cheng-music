@@ -1,8 +1,8 @@
-import React, { memo, useCallback } from 'react'
+import React, { memo } from 'react'
 import { useAsyncFn } from 'react-use'
 
-import recommentApi from '../../../api/recomment'
-import { Comments } from '../../../api/types/songlist'
+import recommentApi from '~/api/recomment'
+import { Comments } from '~/api/types/songlist'
 import List from '../List'
 
 interface IProps {

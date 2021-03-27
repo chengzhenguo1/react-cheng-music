@@ -6,8 +6,8 @@ import {
  Modal, Form, Input, Button, 
 } from 'antd'
 import { AndroidOutlined, LockOutlined } from '@ant-design/icons'
-import authApi from '../../../../api/auth'
-import useStores from '../../../../hooks/useStores'
+import authApi from '~/api/auth'
+import useStores from '~/hooks/useStores'
 
 const LoginDialog: React.FC = () => {
   const { User } = useStores()

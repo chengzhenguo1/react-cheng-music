@@ -3,7 +3,7 @@ import React, { memo } from 'react'
 import { Result } from 'antd'
 import GodComment from './GodComment'
 import NewComment from './NewComment'
-import { IsongComment } from '../../api/types/songlist'
+import { IsongComment } from '~/api/types/songlist'
 import './index.less'
 
 const Comment: React.FC<IsongComment> = memo((data) => (

@@ -1,7 +1,7 @@
 // user/user.ts
 import { makeAutoObservable, toJS } from 'mobx'
-import { MODE } from '../../constants/play'
-import { parseMusicUrl } from '../../utils/parseUrl'
+import { MODE } from '~/constants/play'
+import { parseMusicUrl } from '~/utils/parseUrl'
 
 export interface MusicType {
     musicId: number
@@ -56,6 +56,7 @@ class Music {
         this.currentSong.musicId = musicId
         this.currentSong.url = parseMusicUrl(musicId)
         this.currentSong.authorInfo = authorInfo
+
         this.setPlayList(toJS(this.currentSong))
     }
     /* 播放列表的歌曲 */

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useState, useCallback } from 'react'
 import { observer } from 'mobx-react'
 
 import { Image, Tooltip } from 'antd'
@@ -17,6 +17,15 @@ import './index.less'
 const Footer = () => {
     const { Music } = useStores()
     const { currentSong } = Music
+    const [recordShow, setRecordShow] = useState(false)
+
+    const handleChangeRocord = useCallback(
+        (flag:boolean) => {
+            setRecordShow(flag)
+        },
+        [recordShow],
+    )
+
     return (
         <div className='footer'>
             {/* 进度条 */}
@@ -33,7 +42,7 @@ const Footer = () => {
                 <div>
                     <div className='wrap-info'>
                         <span>{currentSong?.authorInfo.name}</span>
-                        <Artist name={currentSong?.authorInfo.author} id={1} />
+                        <Artist name={currentSong?.authorInfo.author} id={currentSong?.authorInfo.id} />
                     </div>
                     <div className='wrap-time'>
                         <AudioTimer sumTime={Music?.audioInfo.duration} currentTime={Number(Music.audioInfo.time)} />
@@ -48,11 +57,11 @@ const Footer = () => {
             <div className='other-ation'>
                 <PlayMode />
                 <Tooltip placement='top' title='打开播放列表'>
-                    <MenuFoldOutlined />
+                    <MenuFoldOutlined onClick={(e) => handleChangeRocord(true)} />
                 </Tooltip>
                 <PlayVolume />
             </div>
-            {false && <PlayRecord />}
+            <PlayRecord isShow={recordShow} />
         </div>
     )
  }

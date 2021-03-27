@@ -1,11 +1,11 @@
 import React, { memo, useEffect } from 'react'
 import { useLocation, useHistory } from 'react-router-dom'
 import { renderRoutes } from 'react-router-config'
-import { RouterConfig } from '../../router/index'
+import { RouterConfig } from '~/router/index'
 
 import './index.less'
 
-import TbaList from '../../components/TabList'
+import TbaList from '~/components/TabList'
 
 interface TabProps {
     routes: RouterConfig[]

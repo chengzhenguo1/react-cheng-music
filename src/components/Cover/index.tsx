@@ -5,7 +5,7 @@ import './index.less'
 
 import { Image, Spin } from 'antd'
 import { CaretRightOutlined } from '@ant-design/icons'
-import { formatCount } from '../../utils/format'
+import { formatCount } from '~/utils/format'
 
 interface IProps {
     name: string 

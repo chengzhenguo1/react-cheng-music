@@ -3,12 +3,12 @@ import { useAsyncFn, useAsync } from 'react-use'
 import { useParams } from 'react-router-dom'
 
 import { Tabs } from 'antd'
-import Comments from '../../components/Comments/index'
-import Musiclist from '../../components/MusicList/index'
+import Comments from '~/components/Comments/index'
+import Musiclist from '~/components/MusicList/index'
 import BaseInfo from './BaseInfo/index'
-import { IDictionary } from '../../typings/global'
-import SongListApi from '../../api/songlist'
-import { LickType } from '../../api/recomment'
+import { IDictionary } from '~/typings/global'
+import SongListApi from '~/api/songlist'
+import { LickType } from '~/api/recomment'
 import './index.less'
 
 const { TabPane } = Tabs

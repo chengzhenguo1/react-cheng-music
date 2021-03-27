@@ -2,9 +2,9 @@ import React, { memo } from 'react'
 
 import { useAsync } from 'react-use'
 
-import Title from '../../../../components/Title/index'
-import recommentApi from '../../../../api/recomment'
-import Cover from '../../../../components/Cover/index'
+import Title from '~/components/Title/index'
+import recommentApi from '~/api/recomment'
+import Cover from '~/components/Cover/index'
 
 const List: React.FC = memo(() => {
     const { value: recommentData } = useAsync(recommentApi.getRecommentList)

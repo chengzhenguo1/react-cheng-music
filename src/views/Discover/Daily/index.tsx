@@ -4,9 +4,9 @@ import { observer } from 'mobx-react'
 
 import { Spin, Result, Button } from 'antd'
 
-import MusicList from '../../../components/MusicList'
-import useStores from '../../../hooks/useStores'
-import songApi from '../../../api/songlist'
+import MusicList from '~/components/MusicList'
+import useStores from '~/hooks/useStores'
+import songApi from '~/api/songlist'
 
 import './index.less'
 

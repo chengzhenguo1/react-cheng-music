@@ -4,7 +4,7 @@ import { Comment, Avatar } from 'antd'
 import { LikeOutlined } from '@ant-design/icons'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
-import { Comments } from '../../../api/types/songlist'
+import { Comments } from '~/api/types/songlist'
 import './index.less'
 
 dayjs.extend(relativeTime)
