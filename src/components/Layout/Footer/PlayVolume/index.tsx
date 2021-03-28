@@ -12,7 +12,7 @@ const PlayVolume: React.FC = () => {
 
     const onChangeVolume = useCallback((data: number) => {
             setvalue(data)
-            Music.setPlayVolume(data)
+            Music.setPlayVolume(data / 100)
         },
         [])
 

@@ -21,7 +21,15 @@ const App: React.FC = function App() {
         autoPlay: true,
         onEnded: () => playNextMusic(),
         onPlay: () => setMusicHistoryList(),
-        onError: () => { if (currentSong.musicId !== 0) { message.warning('无版权哦！') } },
+        onError: () => {
+            if (currentSong.musicId !== 0) { 
+                        message.warning('无版权哦！')
+                        if (playMode === MODE.SINGLE_CYCLE) {
+                            return
+                        }
+                        playNextMusic()
+                    }
+            },
       })
 
     const playNextMusic = useCallback(() => {

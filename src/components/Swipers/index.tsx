@@ -15,7 +15,13 @@ const Swipers: React.FC<SwiperProps> = memo(({ banners }) => (
             {
                 banners?.map((item) => (
                     <div className='swiper-card' key={item.pic}>
-                        <Image preview={false} src={item.pic} title={item.typeTitle} width='100%' placeholder={<Spin />} loading='lazy' />
+                        <Image 
+                          preview={false} 
+                          src={item.pic} 
+                          title={item.typeTitle} 
+                          width='100%' 
+                          placeholder={<Spin />} 
+                          loading='lazy' />
                         <i style={{ backgroundColor: item.titleColor }}>
                             {item.typeTitle}
                         </i>

@@ -2,8 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { observer } from 'mobx-react'
 
+import { Tag, Table } from 'antd'
 import dayjs from 'dayjs'
-import { Table } from 'antd'
 import { DownloadOutlined } from '@ant-design/icons'
 import { ColumnsType } from 'antd/es/table'
 import { fommatArtist } from '~/utils/format'
@@ -50,6 +50,7 @@ const { Music } = useStores()
                   <DownloadOutlined className='download-icon' onClick={(e) => console.log(record)} />
               </a>
               <span className='music-name' title={record?.name}>{record?.name}</span>
+              {record?.fee === 1 && <span className='icon-vip'>vip</span>}
           </div>
       ),
     },

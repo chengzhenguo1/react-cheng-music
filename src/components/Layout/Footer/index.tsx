@@ -37,7 +37,13 @@ const Footer = () => {
                 <div className='wrap-pic'>
                     {Music?.audioInfo?.paused && <DoubleRightOutlined />}
                     {!Music?.audioInfo?.paused && <DoubleLeftOutlined />}
-                    <Image src={`${currentSong.authorInfo.picUrl}?param=40y40`} preview={false} width={40} height={40} placeholder />
+                    <Image 
+                      src={`${currentSong.authorInfo.picUrl}?param=40y40`} 
+                      preview={false} 
+                      width={40} 
+                      height={40} 
+                      placeholder 
+                      loading='lazy' />
                 </div>
                 <div>
                     <div className='wrap-info'>
