@@ -35,7 +35,6 @@ const handleError = (error: any) => {
 
 const toastError = (error: any) => {
     const { response, message } = error
-    console.log(response)
     Message.error(response?.data?.message || message)
 
     return Promise.reject(error)

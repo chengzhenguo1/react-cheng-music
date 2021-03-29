@@ -10,6 +10,7 @@ import { MODE } from '../constants/play'
 import { MusicType } from '../store/music'
 import routes from '../router/index'
 import Layout from '../components/Layout'
+import MusicDetail from '../components/MusicDetail'
 
 const App: React.FC = function App() {
     const { Music } = useStores()
@@ -76,6 +77,7 @@ const App: React.FC = function App() {
       <HashRouter>
           <Layout>
               {audio}
+              <MusicDetail />
               <Switch>
                   {renderRoutes(routes, { routes })}
               </Switch>

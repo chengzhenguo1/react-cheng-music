@@ -1,17 +1,17 @@
 import axios from '../utils/axios'
 
 import {
- ISonglist, IsongComment, IGetSonglistsRequest, ICategory, ICategories, Track,
+ ISonglist, IGetSonglistsRequest, ICategory, ICategories, Track, ILyric,
 } from './types/songlist'
 
 type GetSongListFn = (id:string) => Promise<ISonglist>
-type GetSongCommentFn = (id:string, page?:number, limit?:number) => Promise<IsongComment>
 type GetUserSonglistFn = (uid:number) => Promise<{create: ISonglist[]; collect: ISonglist[] }>
 type GetRHighQualityFn = (cat:string) => Promise<ISonglist>
 type GetSonglistsFn = (params:IGetSonglistsRequest) => Promise<{playlists:ISonglist[], total:number}>
 type GetSonglistHotCatsFn = ()=> Promise<ICategory[]>
 type GetCategoriesFn = ()=> Promise<ICategories>
 type GetRecommendDailyFn = ()=> Promise<Track[]>
+type GetLyricFn = (id:number)=> Promise<ILyric>
 
 /* 获取歌单列表 */
 const getSongList:GetSongListFn = async (id) => {
@@ -21,20 +21,7 @@ const getSongList:GetSongListFn = async (id) => {
             id,
         },
     })
-    return res
-}
-
-/* 获取歌单评论 */
-const getSongComment:GetSongCommentFn = async (id, page = 0, limit = 20) => {
-    const res = await axios({
-        url: '/comment/playlist',
-        params: {
-            id,
-            limit,
-            offset: page * limit,
-        },
-    })
-    return res
+    return res.playlist
 }
 
 const getUserSonglist: GetUserSonglistFn = async (uid) => {
@@ -115,13 +102,28 @@ const getSonglists: GetSonglistsFn = async ({
       }
   }
 
+/* 获取相似歌单 */
+
+/* 获取相似歌曲 */
+
+/* 获取歌曲单词 */
+const getLyric:GetLyricFn = async (id:number) => {
+    const res = await axios({
+        url: 'lyric',
+        params: {
+            id,
+        },
+    })
+    return res
+}
+
 export default {
     getSongList,
-    getSongComment,
     getUserSonglist,
     getRecommendDaily,
     getRHighQuality,
     getSonglists,
     getSonglistHotCats,
     getCategories,
+    getLyric,
 }

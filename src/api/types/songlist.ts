@@ -1,26 +1,3 @@
-/* 歌单评论 */
-export interface IsongComment {
-  total?: number
-  more?: boolean
-  moreHot?: boolean
-  type?: number
-  comments?: Comments[] // 最新评论
-  hotComments?: Comments[] // 精彩评论
-  [propName: string]: any
-}
-export interface Comments {
-  user: UserInfo
-  content: string
-  commentId: number
-  time: number 
-  likedCount: number
-  beReplied: {
-    beRepliedCommentId: number
-    user: BeRepliedUser
-    content: string
-  }[] // 子评论
-}
-
 // eslint-disable-next-line no-shadow
 enum ORDER {
   HOT = 'hot',
@@ -221,3 +198,12 @@ export interface Track {
   }
 
   /* 歌单结束 */
+
+    /* 歌词类型数据 */
+export interface ILyric {
+  code: number
+  lrc: {
+    version: number
+    lyric: string
+  }
+}

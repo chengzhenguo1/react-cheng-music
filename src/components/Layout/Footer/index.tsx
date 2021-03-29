@@ -16,8 +16,15 @@ import './index.less'
 
 const Footer = () => {
     const { Music } = useStores()
-    const { currentSong } = Music
+    const { currentSong, audioInfo, showLyrics } = Music
     const [recordShow, setRecordShow] = useState(false)
+
+    const changeLysicState = useCallback(
+        () => {
+            Music.toggleLyricsState()
+        },
+        [],
+    )
 
     const handleChangeRocord = useCallback(
         (flag:boolean) => {
@@ -34,16 +41,16 @@ const Footer = () => {
             </div>
             {/* 信息 */}
             <div className='footer-wrap'>
-                <div className='wrap-pic'>
-                    {Music?.audioInfo?.paused && <DoubleRightOutlined />}
-                    {!Music?.audioInfo?.paused && <DoubleLeftOutlined />}
+                <div className='wrap-pic' onClick={changeLysicState}>
                     <Image 
                       src={`${currentSong.authorInfo.picUrl}?param=40y40`} 
                       preview={false} 
                       width={40} 
-                      height={40} 
-                      placeholder 
+                      height={40}
+                      placeholder
                       loading='lazy' />
+                    {!showLyrics && <DoubleRightOutlined />}
+                    {showLyrics && <DoubleLeftOutlined />}
                 </div>
                 <div>
                     <div className='wrap-info'>
@@ -51,7 +58,7 @@ const Footer = () => {
                         <Artist name={currentSong?.authorInfo.author} id={currentSong?.authorInfo.id} />
                     </div>
                     <div className='wrap-time'>
-                        <AudioTimer sumTime={Music?.audioInfo.duration} currentTime={Number(Music.audioInfo.time)} />
+                        <AudioTimer sumTime={audioInfo?.duration} currentTime={audioInfo?.time} />
                     </div>
                 </div>
             </div>

@@ -57,7 +57,6 @@ const { Music } = useStores()
     {
       title: '歌手',
       key: 'ar',
-      dataIndex: ['ar', 'name'],
       width: '15%',
       ellipsis: true,
       render: (value, { ar }, index: number) => (

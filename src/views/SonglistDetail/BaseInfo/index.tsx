@@ -18,7 +18,6 @@ interface IProps {
 
 const SongLists: React.FC<IProps> = memo(({ data }) => {
     const { Music } = useStores()
-
     const playAll = useCallback(
         () => {
             Music.playAll(data?.tracks)
@@ -36,7 +35,7 @@ const SongLists: React.FC<IProps> = memo(({ data }) => {
                 </div>
                 <div className='info-author'>
                     <Avatar size={25} src={`${data?.creator?.avatarUrl}?param=25y25`} />
-                    <Link to='/'>{data?.creator.nickname}</Link>
+                    <Link to='/'>{data?.creator?.nickname}</Link>
                     <span className='info-time base-color'>
                         {dayjs(data?.createTime).format('YYYY-MM-DD')}
                         创建
@@ -46,7 +45,7 @@ const SongLists: React.FC<IProps> = memo(({ data }) => {
                 <div className='info-tags'>
                     <span>标签：</span>
                     {
-                data && data?.tags.length > 1
+                data && data?.tags.length >= 1
                 ? data?.tags.map((item:any) => (
                     <Fragment key={item}>
                         <Link to='/'>

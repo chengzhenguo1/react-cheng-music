@@ -76,6 +76,8 @@ class Music {
     }
     /* 添加到全部歌单 */
     playAll(data?: Track[]):void {
+        /* 清空播放列表 */
+        this.playList = []
         data?.forEach((item) => {
             const authorInfo = {
                 picUrl: item.al.picUrl,
@@ -91,7 +93,6 @@ class Music {
             }
             this.setPlayList(obj) 
         })
-
         this.currentSong.musicId = this.playList[0].musicId
         this.currentSong.url = parseMusicUrl(this.playList[0].musicId)
         this.currentSong.authorInfo = this.playList[0].authorInfo
@@ -144,8 +145,8 @@ class Music {
         }
     }
     // 设置歌词页面的显示和隐藏
-    setLyricsShow(flag:boolean):void {
-        this.showLyrics = flag
+    toggleLyricsState():void {
+        this.showLyrics = !this.showLyrics
     }
 }
 

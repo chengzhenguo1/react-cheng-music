@@ -1,11 +1,10 @@
 import axios from '../utils/axios'
 
 import { IBanner, IRecommendList } from './types/recomment'
-import {} from ''
 
 type GetBannersFn = () => Promise<IBanner[]>
 type GetRecommendListFn = ()=> Promise<IRecommendList[]>
-type SetLikeFn = (id:number, type:number, t: 1|0)=> Promise<any[]>
+type SetLikeFn = (id:number, cid:number, type:number, t:1|0)=> Promise<any[]>
 
 const getBanners: GetBannersFn = async () => {
     const res = await axios({
@@ -26,25 +25,15 @@ const getRecommentList: GetRecommendListFn = async () => {
     })
     return res.result
 }
-
-// 点赞
-// eslint-disable-next-line no-shadow
-export enum LickType {
-    SONG = 0,
-    MV = 1,
-    LIST = 2,
-    ALBUM = 3,
-    TV = 4,
-    MOVIE = 5,
-    DYNAMIC =6
-}
-const setCommentLike:SetLikeFn = async (cid:number, type = 2, t: 1|0) => {
+/* 用户点赞 */
+const setCommentLike:SetLikeFn = async (id:number, cid:number, type:number, t:0|1) => {
     const res = await axios({
         url: '/comment/like',
         params: {
+            id,
             cid,
-            type,
             t,
+            type,
         },
     })
     return res
