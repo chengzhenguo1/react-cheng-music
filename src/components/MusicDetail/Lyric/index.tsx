@@ -27,7 +27,7 @@ const LyricText: React.FC<Iprops> = memo(({
             window.requestAnimationFrame(() => {
                 const audioTime = time || 0
                 /* 查找当前该移动到的索引 */
-                const lineIndex = lines.findIndex(([times], index) => {
+                const lineIndex = lines?.findIndex(([times], index) => {
                     const prevTime = index - 1 >= 0 ? lines[index - 1][0] : times
                     const nextTime = index + 1 < lines.length ? lines[index + 1][0] : times
                     if (prevTime <= audioTime && nextTime >= audioTime) {

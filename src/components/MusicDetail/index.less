@@ -26,6 +26,7 @@
     &.detail-show {
         top: var(--header-height);
     }
+
     .detail-cover {
         width: 1000px;
         margin: 0 auto;
@@ -34,6 +35,7 @@
     .detail-header {
         display: flex;
         margin-bottom: 20px;
+
         .detail-h-wrap {
             position: relative;
             padding: 0 100px 0 150px;
@@ -100,5 +102,23 @@
         }
     }
 
-    .detail-info {}
+    .detail-info {
+        display: flex;
+
+        .detail-comment {
+            flex: 1;
+        }
+
+        .detail-related {
+            width: 300px;
+        }
+    }
+
+    .detail-related {
+        .related-title {
+            padding-bottom: 15px;
+            font-size: 1.1em;
+            font-weight: 700;
+        }
+    }
 }

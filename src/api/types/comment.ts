@@ -14,13 +14,13 @@ export enum LickType {
 
 /* 歌单评论 */
 export interface IsongComment {
-    total?: number
-    more?: boolean
-    moreHot?: boolean
-    type?: number
+    total: number
+    more: boolean
+    moreHot: boolean
+    type: number
     id: number | string
-    comments?: Comments[] // 最新评论
-    hotComments?: Comments[] // 精彩评论
+    comments: Comments[] // 最新评论
+    hotComments: Comments[] // 精彩评论
     [propName: string]: any
   }
 export interface Comments {

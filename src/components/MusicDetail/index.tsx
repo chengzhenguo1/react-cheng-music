@@ -4,11 +4,13 @@ import cn from 'classnames'
 import { useAsyncFn } from 'react-use'
 import { Image } from 'antd'
 import useStores from '~/hooks/useStores'
+import useLikeUpdate from '~/hooks/useLikeUpdate'
 
 import commentApi from '~/api/comment'
 import songlistApi from '~/api/songlist'
 import { LickType } from '~/api/types/comment'
 import Lyric from './Lyric'
+import RelatedList, { RELATED_TYPE } from './RelatedList'
 import Comments from '../Comments'
 import { formatLyric } from '~/utils/format'
 import playBar from '~/assets/image/play-bar.png'
@@ -18,23 +20,20 @@ import './index.less'
 const MusicDetail: React.FC = () => {
     const { Music } = useStores()
     const { currentSong, showLyrics, audioInfo } = Music
-    const [lyric, getLyricFn] = useAsyncFn(songlistApi.getLyric)
-    const [{ value: commentData = [] }, getCommentFn] = useAsyncFn(commentApi.getSongComment)
+    const [{ value: lyric }, getLyricFn] = useAsyncFn(songlistApi.getLyric)
+    const [{ value: relatedSong }, getRelatedSongFn] = useAsyncFn(songlistApi.getRelatedSong)
+    const [{ value: commentData }, getCommentFn] = useAsyncFn(commentApi.getSongComment)
+    const [{ value: relateSongList }, getRelateSongListFn] = useAsyncFn(songlistApi.getRelatedSongList)
     
     useEffect(() => {
         getLyricFn(currentSong.musicId)
         getCommentFn(currentSong.musicId)
+        getRelatedSongFn(currentSong.musicId)
+        getRelateSongListFn(currentSong.musicId)
     }, [currentSong.musicId])
 
-    const onUpDateCidLiked = useCallback((index:number, liked:boolean, hot:boolean) => {
-        const type = hot ? 'hotComments' : 'comments'
-        const isAdd = liked ? 1 : -1
-        console.log(index)
-        commentData[type][index].likedCount += isAdd
-        commentData[type][index].liked = liked
-        commentData[type] = [...commentData[type]]
-    }, [currentSong.musicId, commentData])
-
+    const { onUpDateCidLiked } = useLikeUpdate(commentData)
+    
     const onChangePage = useCallback(
         (page:number) => {
             getCommentFn(currentSong.musicId, page)
@@ -58,25 +57,58 @@ const MusicDetail: React.FC = () => {
                         </div>
                     </div>
                     <div className='detail-lyric'>
+                        {lyric
+                        && (
                         <Lyric 
                           title={currentSong.authorInfo.name} 
                           artist={currentSong.authorInfo.author}
                           time={audioInfo.time}
-                          lines={formatLyric(lyric?.value?.lrc?.lyric)}
+                          lines={formatLyric(lyric?.lrc?.lyric)}
                           paused={audioInfo.paused} />
+                        )}
                     </div>
                 </div>
                 <div className='detail-info'>
-                    <Comments
-                      onChangePage={onChangePage}
-                      onUpDateCidLiked={onUpDateCidLiked}
-                      total={commentData?.total} 
-                      type={LickType.SONG}
-                      id={currentSong?.musicId}
-                      moreHot={commentData?.moreHot}
-                      comments={commentData?.comments}
-                      hotComments={commentData?.hotComments}
-                      more={commentData?.more} />
+                    {/* 评论 */}
+                    <div className='detail-comment'>
+                        {
+                        commentData
+                        && (
+                        <Comments
+                          onChangePage={onChangePage}
+                          onUpDateCidLiked={onUpDateCidLiked}
+                          total={commentData?.total} 
+                          type={LickType.SONG}
+                          id={currentSong?.musicId}
+                          moreHot={commentData?.moreHot}
+                          comments={commentData?.comments}
+                          hotComments={commentData?.hotComments}
+                          more={commentData?.more} />
+                        )
+                    }
+                    </div>
+                    <div className='detail-related'>
+                        <div className='related-list'>
+                            <div className='related-title'>
+                                包含这首歌的歌单
+                            </div>
+                            {
+                                relateSongList && (
+                                    relateSongList?.map((item) => <RelatedList key={item.id} data={item} type={RELATED_TYPE.PLAYList} />)
+                                )
+                            }
+                        </div>
+                        <div className='related-song'>
+                            <div className='related-title'>
+                                相似歌曲
+                            </div>
+                            {
+                                relatedSong && (
+                                    relatedSong?.map((item) => <RelatedList key={item.id} data={item} type={RELATED_TYPE.SONG} />)
+                                )
+                            }
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

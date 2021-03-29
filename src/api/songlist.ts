@@ -1,7 +1,7 @@
 import axios from '../utils/axios'
 
 import {
- ISonglist, IGetSonglistsRequest, ICategory, ICategories, Track, ILyric,
+ ISonglist, IGetSonglistsRequest, ICategory, ICategories, Track, ILyric, IMusic,
 } from './types/songlist'
 
 type GetSongListFn = (id:string) => Promise<ISonglist>
@@ -12,6 +12,8 @@ type GetSonglistHotCatsFn = ()=> Promise<ICategory[]>
 type GetCategoriesFn = ()=> Promise<ICategories>
 type GetRecommendDailyFn = ()=> Promise<Track[]>
 type GetLyricFn = (id:number)=> Promise<ILyric>
+type GetRelatedSongFn = (id:number)=> Promise<IMusic[]>
+type GetRelatedSongListFn = (id:number)=> Promise<ISonglist[]>
 
 /* 获取歌单列表 */
 const getSongList:GetSongListFn = async (id) => {
@@ -92,7 +94,7 @@ const getSonglists: GetSonglistsFn = async ({
     return res.tags
   }
 
-  const getCategories:GetCategoriesFn = async () => {
+const getCategories:GetCategoriesFn = async () => {
       const res = await axios({
           url: '/playlist/catlist',
       })
@@ -103,13 +105,31 @@ const getSonglists: GetSonglistsFn = async ({
   }
 
 /* 获取相似歌单 */
+const getRelatedSongList:GetRelatedSongListFn = async (id:number) => {
+    const res = await axios({
+        url: '/simi/playlist',
+        params: {
+            id,
+        },
+    })
+    return res.playlists
+}
 
 /* 获取相似歌曲 */
+const getRelatedSong:GetRelatedSongFn = async (id:number) => {
+    const res = await axios({
+        url: '/simi/song',
+        params: {
+            id,
+        },
+    })
+    return res.songs
+}
 
 /* 获取歌曲单词 */
 const getLyric:GetLyricFn = async (id:number) => {
     const res = await axios({
-        url: 'lyric',
+        url: '/lyric',
         params: {
             id,
         },
@@ -126,4 +146,6 @@ export default {
     getSonglistHotCats,
     getCategories,
     getLyric,
+    getRelatedSong,
+    getRelatedSongList,
 }

@@ -7,7 +7,7 @@ import List from '../List'
 import Pagination from '../Pagination'
 
 interface IProps {
-    id: number
+    id: number | string
     total?: number
     comments?: Comments[]
     hotComments?: Comments[]

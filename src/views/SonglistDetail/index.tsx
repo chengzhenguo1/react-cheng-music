@@ -11,6 +11,7 @@ import { IDictionary } from '~/typings/global'
 import SongListApi from '~/api/songlist'
 import CommentApi from '~/api/comment'
 import './index.less'
+import useLikeUpdate from '~/hooks/useLikeUpdate'
 
 const { TabPane } = Tabs
 
@@ -19,24 +20,18 @@ const SongListDetail: React.FC = memo(() => {
     
     const [{ value: songList }, getSongListFn] = useAsyncFn(SongListApi.getSongList)
       
-    const [{ value: songComment = [] }, getSongSCommentFn] = useAsyncFn(CommentApi.getSongSComment)
+    const [{ value: songComment }, getSongSCommentFn] = useAsyncFn(CommentApi.getSongSComment)
 
-      useEffect(() => {
-        getSongSCommentFn(id)
-        getSongListFn(id)
-      }, [id])
+    useEffect(() => {
+      getSongSCommentFn(id)
+      getSongListFn(id)
+    }, [id])
 
-      const onUpDateCidLiked = useCallback((index:number, liked:boolean, hot:boolean) => {
-        const type = hot ? 'hotComments' : 'comments'
-        const isAdd = liked ? 1 : -1
-        songComment[type][index].likedCount += isAdd
-        songComment[type][index].liked = liked
-        songComment[type] = [...songComment[type]]
-    }, [id, songComment, songList])
+    const { onUpDateCidLiked } = useLikeUpdate(songComment)
 
-      const onChangePage = useCallback((page:number) => {
-        getSongSCommentFn(id, page)
-      }, [id])
+    const onChangePage = useCallback((page:number) => {
+      getSongSCommentFn(id, page)
+    }, [id])
     
     return (
         <div className='song-list-detail'>
@@ -49,16 +44,20 @@ const SongListDetail: React.FC = memo(() => {
                         <Musiclist data={songList?.tracks} />
                     </TabPane>
                     <TabPane tab='评论' key='2'>
+                        {
+                        songComment && (
                         <Comments
                           onChangePage={onChangePage}
                           onUpDateCidLiked={onUpDateCidLiked}
-                          total={songComment?.total} 
+                          total={songComment.total} 
                           type={LickType.LIST}
                           id={id}
-                          moreHot={songComment?.moreHot}
-                          comments={songComment?.comments}
-                          hotComments={songComment?.hotComments}
-                          more={songComment?.more} />
+                          moreHot={songComment.moreHot}
+                          comments={songComment.comments}
+                          hotComments={songComment.hotComments}
+                          more={songComment.more} />
+                        )
+                      }
                     </TabPane>
                 </Tabs>
             </div>

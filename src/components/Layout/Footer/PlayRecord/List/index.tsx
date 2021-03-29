@@ -7,7 +7,7 @@ import dayjs from 'dayjs'
 import { ColumnsType } from 'antd/es/table'
 import { PauseOutlined } from '@ant-design/icons'
 import useStores from '~/hooks/useStores'
-import { MusicType } from '~/store/music/index'
+import { MusicType } from '~/store/music/type'
 
 interface IProps{
     data: MusicType[]

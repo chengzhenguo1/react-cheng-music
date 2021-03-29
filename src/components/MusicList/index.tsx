@@ -15,11 +15,11 @@ interface IProps {
     data?: Track[]
 }
 
-const musicUrl = 'https://music.163.com/song/media/outer/url?id='
+  const musicUrl = 'https://music.163.com/song/media/outer/url?id='
 
-const MusicList: React.FC<IProps> = ({ data }) => {
-const { Music } = useStores()
- const onDoubleClick = (e:Track) => {
+  const MusicList: React.FC<IProps> = ({ data }) => {
+  const { Music } = useStores()
+  const onDoubleClick = (e:Track) => {
    Music.playMusic(e.id, e.dt / 1000, {
     picUrl: e.al.picUrl, 
     name: e.name, 

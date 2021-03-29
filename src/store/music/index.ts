@@ -3,20 +3,9 @@ import { makeAutoObservable, toJS } from 'mobx'
 import { MODE } from '~/constants/play'
 import { parseMusicUrl } from '~/utils/parseUrl'
 import { Track } from '~/api/types/songlist'
-
-export interface MusicType {
-    musicId: number
-    url: string
-    time?: number
-    authorInfo: AuthorType
-}
-
-export interface AuthorType {
-    picUrl:string
-    id:number
-    name:string
-    author:string
-}
+import {
+ MusicType, AuthorType, AudioInfoType, AudioControls,
+ } from './type'
 
 const initAuthor = {
     picUrl: '',
@@ -36,11 +25,11 @@ class Music {
     // 歌词的显示与隐藏
     showLyrics = false
     // 
-    controls:any = null
+    controls: AudioControls | null = null
     // 当前播放歌曲
     currentSong: MusicType = initSong
     // 歌曲信息
-    audioInfo = {
+    audioInfo: AudioInfoType = {
         duration: 0,
         muted: false,
         paused: true,
@@ -123,7 +112,7 @@ class Music {
         this.playMode = type
     }
     // 设置播放信息
-    setPlayInfo(info:any, controls: any):void {
+    setPlayInfo(info:AudioInfoType, controls: AudioControls):void {
         this.audioInfo = info
         this.controls = controls
     }
@@ -139,7 +128,7 @@ class Music {
     clearPlayList(type: string):void {
         if (type === 'playList') {
             this.playList = []
-            this.controls.pause()
+            this.controls?.pause()
         } else {
             this.historyList = []
         }

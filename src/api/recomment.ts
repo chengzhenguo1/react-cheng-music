@@ -4,7 +4,7 @@ import { IBanner, IRecommendList } from './types/recomment'
 
 type GetBannersFn = () => Promise<IBanner[]>
 type GetRecommendListFn = ()=> Promise<IRecommendList[]>
-type SetLikeFn = (id:number, cid:number, type:number, t:1|0)=> Promise<any[]>
+type SetLikeFn = (id:number | string, cid:number, type:number, t:1|0)=> Promise<any>
 
 const getBanners: GetBannersFn = async () => {
     const res = await axios({
@@ -25,8 +25,8 @@ const getRecommentList: GetRecommendListFn = async () => {
     })
     return res.result
 }
-/* 用户点赞 */
-const setCommentLike:SetLikeFn = async (id:number, cid:number, type:number, t:0|1) => {
+/* 设置点赞 */
+const setCommentLike:SetLikeFn = async (id:number| string, cid:number, type:number, t:0|1) => {
     const res = await axios({
         url: '/comment/like',
         params: {
