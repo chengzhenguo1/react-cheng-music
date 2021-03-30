@@ -5,7 +5,7 @@ import { observer } from 'mobx-react'
 import useStores from '~/hooks/useStores'
 
 import songListApi, { NewSongType } from '~/api/songlist'
-import List from './List'
+import NewMusicList from '~/components/NewMusicList'
 import './index.less'
 import { IMusic } from '~/api/types/songlist'
 
@@ -53,7 +53,7 @@ const NewSong: React.FC = () => {
             </div>
             <div className='new-list'>
                 {!songList.loading && (
-                    <List data={songList.value} />
+                    <NewMusicList data={songList.value} />
                 )}
             </div>
         </div>

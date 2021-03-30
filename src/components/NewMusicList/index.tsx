@@ -15,7 +15,7 @@ interface IProps {
     data?: IMusic[]
 }
 
-  const MusicList: React.FC<IProps> = ({ data }) => {
+const NewMusicList: React.FC<IProps> = ({ data }) => {
   const { Music } = useStores()
   
   const onDoubleClick = (e:IMusic) => {
@@ -93,4 +93,4 @@ interface IProps {
 )
  }
 
-export default observer(MusicList)
+export default observer(NewMusicList)
