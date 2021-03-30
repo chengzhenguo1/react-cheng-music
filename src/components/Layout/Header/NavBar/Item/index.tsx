@@ -10,8 +10,8 @@ const Item = memo(() => {
     const [skinShow, setskinShow] = useState(false)
     
     const toggleSkin = useCallback(
-        () => {
-            setskinShow(!skinShow)
+        (flag = true) => {
+            setskinShow(flag)
         },
         [skinShow, setskinShow],
     )
@@ -22,7 +22,7 @@ const Item = memo(() => {
                 <SettingOutlined title='设置' width={20} height={20} />
             </div>
             <div className='item-skin'>
-                <SkinOutlined title='皮肤' width={20} height={20} />
+                <SkinOutlined title='皮肤' width={20} height={20} onClick={toggleSkin} />
                 <Skin show={skinShow} onClickAway={toggleSkin} />
             </div>
             <div className='item-message'>

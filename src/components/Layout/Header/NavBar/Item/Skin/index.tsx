@@ -18,7 +18,7 @@ enum ThemeColors {
 
 interface IProps{
     show: boolean
-    onClickAway: ()=>void
+    onClickAway: (flag:boolean)=>void
 }
 
 const Skin: React.FC<IProps> = memo(({ show, onClickAway }) => {
@@ -32,7 +32,7 @@ const Skin: React.FC<IProps> = memo(({ show, onClickAway }) => {
     }, [value, setValue])
 
     useClickAway(skinRef, () => {
-        onClickAway()
+        onClickAway(false)
     })
 
     const setThemeColors = useCallback((e: React.MouseEvent<HTMLDivElement>) => {

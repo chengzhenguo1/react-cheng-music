@@ -26,11 +26,13 @@ const MusicDetail: React.FC = () => {
     const [{ value: relateSongList }, getRelateSongListFn] = useAsyncFn(songlistApi.getRelatedSongList)
     
     useEffect(() => {
-        getLyricFn(currentSong.musicId)
-        getCommentFn(currentSong.musicId)
-        getRelatedSongFn(currentSong.musicId)
-        getRelateSongListFn(currentSong.musicId)
-    }, [currentSong.musicId])
+        if (showLyrics) {
+            getLyricFn(currentSong.musicId)
+            getCommentFn(currentSong.musicId)
+            getRelatedSongFn(currentSong.musicId)
+            getRelateSongListFn(currentSong.musicId)
+        }
+    }, [currentSong.musicId, showLyrics])
 
     const { onUpDateCidLiked } = useLikeUpdate(commentData)
     

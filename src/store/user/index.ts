@@ -1,5 +1,6 @@
 // user/user.ts
 import { makeAutoObservable } from 'mobx'
+import store from 'store'
 import { ILoginResult } from '~/api/types/auth'
 
 class User {
@@ -11,9 +12,9 @@ class User {
 
     constructor() {
         makeAutoObservable(this)
-        const user = window.sessionStorage.getItem('user')
+        const user = store.get('user')
         if (user) {
-            this.user = JSON.parse(user)
+            this.user = user
             this.isLogin = true
         }
     }
@@ -25,14 +26,14 @@ class User {
     // 保存登录信息
     loginUser(data:ILoginResult):void {
         this.user = data
-        window.sessionStorage.setItem('user', JSON.stringify(this.user))
+        store.set('user', this.user)
         this.isLogin = true
         this.showLoginDialog = false
     }
 
     logoutUser():void {
         this.user = {}
-        window.sessionStorage.removeItem('user')
+        store.remove('user')
         this.isLogin = false
     }
 }

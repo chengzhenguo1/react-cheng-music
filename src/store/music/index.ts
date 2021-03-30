@@ -2,7 +2,7 @@
 import { makeAutoObservable, toJS } from 'mobx'
 import { MODE } from '~/constants/play'
 import { parseMusicUrl } from '~/utils/parseUrl'
-import { Track } from '~/api/types/songlist'
+import { IMusic, Track } from '~/api/types/songlist'
 import {
  MusicType, AuthorType, AudioInfoType, AudioControls,
  } from './type'
@@ -64,24 +64,29 @@ class Music {
         this.currentSong.time = this.playList[index].time
     }
     /* 添加到全部歌单 */
-    playAll(data?: Track[]):void {
+    playAll<T extends Track | IMusic>(data?: T[]):void {
         /* 清空播放列表 */
         this.playList = []
+
         data?.forEach((item) => {
             const authorInfo = {
-                picUrl: item.al.picUrl,
+                picUrl: (item as Track).al?.picUrl || (item as IMusic).album?.picUrl,
                 name: item.name,
-                author: item.ar[0].name,
-                id: item.al.id,
+                author: (item as Track).ar?.length > 0 ? (item as Track).ar[0].name : (item as IMusic)?.artists[0].name,
+                id: (item as Track).ar?.length > 0 ? (item as Track).ar[0].id : (item as IMusic)?.artists[0].id,
             }
+
             const obj = {
                 musicId: item.id,
                 url: parseMusicUrl(item.id), 
-                time: item.dt / 1000,
+                time: ((item as Track)?.dt || (item as IMusic).duration) / 1000,
                 authorInfo,
             }
+            /* 添加到播放列表 */
             this.setPlayList(obj) 
         })
+        
+        /* 播放歌单第一首 */
         this.currentSong.musicId = this.playList[0].musicId
         this.currentSong.url = parseMusicUrl(this.playList[0].musicId)
         this.currentSong.authorInfo = this.playList[0].authorInfo
@@ -134,8 +139,8 @@ class Music {
         }
     }
     // 设置歌词页面的显示和隐藏
-    toggleLyricsState():void {
-        this.showLyrics = !this.showLyrics
+    toggleLyricsState(flag?: boolean):void {
+        this.showLyrics = flag ?? !this.showLyrics
     }
 }
 

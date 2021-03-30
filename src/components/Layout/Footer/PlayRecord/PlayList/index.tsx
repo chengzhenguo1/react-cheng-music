@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react'
 import { observer } from 'mobx-react'
 
-import { MusicType } from '~/store/music'
+import { MusicType } from '~/store/music/type'
 import List from '../List'
 import useStores from '~/hooks/useStores'
 

@@ -23,8 +23,9 @@ const RelatedList: React.FC<Iprops> = ({ data, type }) => {
     const { Music } = useSotres()
     const { push } = useHistory()
 
-    const handleToPage = useCallback((e:IMusic | ISonglist) => {
+    const handleToPage = useCallback((e:IMusic) => {
         if (type === RELATED_TYPE.SONG) {
+            /* 播放歌曲 */
             const newD = (e as IMusic)
             Music.playMusic(newD.id, newD.duration / 1000, {
                 picUrl: newD.album.picUrl, 
@@ -33,8 +34,9 @@ const RelatedList: React.FC<Iprops> = ({ data, type }) => {
                 author: fommatArtist(newD.artists),
             })
         } else {
+            /* 跳转到响应的歌单 */
             push(`/songlists/${e.id}`)
-            Music.toggleLyricsState()
+            Music.toggleLyricsState(false)
         }
     }, [type, data])
     
@@ -48,7 +50,7 @@ const RelatedList: React.FC<Iprops> = ({ data, type }) => {
                 </div>
             )}
                 <Image 
-                  src={`${(data as IMusic).album?.picUrl || (data as ISonglist).coverImgUrl}?param=55y55`} 
+                  src={`${((data as IMusic).album?.picUrl || (data as ISonglist).coverImgUrl)}?param=55y55`} 
                   width={55} 
                   height={55} 
                   preview={false} 

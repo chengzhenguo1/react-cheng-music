@@ -4,6 +4,15 @@ import {
  ISonglist, IGetSonglistsRequest, ICategory, ICategories, Track, ILyric, IMusic,
 } from './types/songlist'
 
+// eslint-disable-next-line no-shadow
+export enum NewSongType {
+    ALL = 0,
+    CN = 7,
+    EU = 96,
+    JP = 8,
+    KR = 16
+}
+
 type GetSongListFn = (id:string) => Promise<ISonglist>
 type GetUserSonglistFn = (uid:number) => Promise<{create: ISonglist[]; collect: ISonglist[] }>
 type GetRHighQualityFn = (cat:string) => Promise<ISonglist>
@@ -14,6 +23,7 @@ type GetRecommendDailyFn = ()=> Promise<Track[]>
 type GetLyricFn = (id:number)=> Promise<ILyric>
 type GetRelatedSongFn = (id:number)=> Promise<IMusic[]>
 type GetRelatedSongListFn = (id:number)=> Promise<ISonglist[]>
+type GetNewSongListFn = (type?: NewSongType)=> Promise<IMusic[]>
 
 /* 获取歌单列表 */
 const getSongList:GetSongListFn = async (id) => {
@@ -26,6 +36,7 @@ const getSongList:GetSongListFn = async (id) => {
     return res.playlist
 }
 
+/* 获取用户喜爱的歌单和收藏的歌单 */
 const getUserSonglist: GetUserSonglistFn = async (uid) => {
     const res = await axios({
         url: '/user/playlist',
@@ -137,6 +148,17 @@ const getLyric:GetLyricFn = async (id:number) => {
     return res
 }
 
+/* 获取最新音乐榜单 */
+const getNewSongList:GetNewSongListFn = async (type = NewSongType.ALL) => {
+    const res = await axios({
+        url: '/top/song',
+        params: {
+            type,
+        },
+    })
+    return res.data
+}
+
 export default {
     getSongList,
     getUserSonglist,
@@ -148,4 +170,5 @@ export default {
     getLyric,
     getRelatedSong,
     getRelatedSongList,
+    getNewSongList,
 }
