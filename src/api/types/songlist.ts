@@ -10,6 +10,21 @@ export interface IGetSonglistsRequest {
   offset?: number
 }
 
+/* 所有榜单内容摘要 */
+export interface ITracks{
+  first:string 
+  second:string
+}
+export interface ITopList{
+  tracks: ITracks[]
+  id: number
+  name: string
+  coverImgUrl: string
+  playCount: number
+  updateTime: number
+  trackCount: number
+}
+
 // 热门标签响应
 
 export interface ICategory{

@@ -17,7 +17,7 @@ import playBar from '~/assets/image/play-bar.png'
 import playCd from '~/assets/image/play-cd.png'
 import './index.less'
 
-const MusicDetail: React.FC = () => {
+const MusicDetail = () => {
     const { Music } = useStores()
     const { currentSong, showLyrics, audioInfo } = Music
     const [{ value: lyric }, getLyricFn] = useAsyncFn(songlistApi.getLyric)

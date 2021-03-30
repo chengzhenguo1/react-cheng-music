@@ -53,7 +53,7 @@ class Music {
         this.setPlayList(toJS({ ...this.currentSong, time }))
     }
     /* 播放列表设置 */
-    setPlayList(data:MusicType):void {
+    private setPlayList(data:MusicType):void {
         this.setList('playList', data)
     }
     /* 播放列表的歌曲 */
@@ -105,7 +105,7 @@ class Music {
        const data = this?.playList.find(({ musicId }) => musicId === this?.currentSong.musicId)
        this.setList('historyList', toJS(data))
     }
-    setList(key:string, data?:MusicType):void {
+    private setList(key:string, data?:MusicType):void {
         /* 查看列表中是否有当前歌曲 */
         const index = (this[key] as MusicType[])?.findIndex((item) => item?.musicId === data?.musicId)
         if (index === -1) {

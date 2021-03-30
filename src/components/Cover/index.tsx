@@ -8,8 +8,8 @@ import { CaretRightOutlined } from '@ant-design/icons'
 import { formatCount } from '~/utils/format'
 
 interface IProps {
-    name: string 
-    playCount?: number
+    name?: string 
+    playCount: number
     playType?: string
     picUrl?: string
     pid: string | number

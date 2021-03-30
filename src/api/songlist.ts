@@ -1,7 +1,7 @@
 import axios from '../utils/axios'
 
 import {
- ISonglist, IGetSonglistsRequest, ICategory, ICategories, Track, ILyric, IMusic,
+ ISonglist, IGetSonglistsRequest, ICategory, ICategories, Track, ILyric, IMusic, ITopList,
 } from './types/songlist'
 
 // eslint-disable-next-line no-shadow
@@ -16,7 +16,7 @@ export enum NewSongType {
 type GetSongListFn = (id:string) => Promise<ISonglist>
 type GetUserSonglistFn = (uid:number) => Promise<{create: ISonglist[]; collect: ISonglist[] }>
 type GetRHighQualityFn = (cat:string) => Promise<ISonglist>
-type GetSonglistsFn = (params:IGetSonglistsRequest) => Promise<{playlists:ISonglist[], total:number}>
+type GetHighSongListsFn = (params:IGetSonglistsRequest) => Promise<{playlists:ISonglist[], total:number}>
 type GetSonglistHotCatsFn = ()=> Promise<ICategory[]>
 type GetCategoriesFn = ()=> Promise<ICategories>
 type GetRecommendDailyFn = ()=> Promise<Track[]>
@@ -24,6 +24,7 @@ type GetLyricFn = (id:number)=> Promise<ILyric>
 type GetRelatedSongFn = (id:number)=> Promise<IMusic[]>
 type GetRelatedSongListFn = (id:number)=> Promise<ISonglist[]>
 type GetNewSongListFn = (type?: NewSongType)=> Promise<IMusic[]>
+type GetTopListFN = ()=> Promise<ITopList[]>
 
 /* 获取歌单列表 */
 const getSongList:GetSongListFn = async (id) => {
@@ -81,7 +82,7 @@ const getRHighQuality :GetRHighQualityFn = async (cat = '全部') => {
 
 /* 获取精品歌单部分 */
 
-const getSonglists: GetSonglistsFn = async ({
+const getHighSonglists: GetHighSongListsFn = async ({
  cat, order, limit = 100, offset = 0, 
 }) => {
     const res = await axios({
@@ -159,16 +160,26 @@ const getNewSongList:GetNewSongListFn = async (type = NewSongType.ALL) => {
     return res.data
 }
 
+/* 获取排行榜简要 */
+const getTopList:GetTopListFN = async () => {
+    const res = await axios({
+        url: '/toplist/detail',
+    })
+
+    return res.list
+}
+
 export default {
     getSongList,
     getUserSonglist,
     getRecommendDaily,
     getRHighQuality,
-    getSonglists,
+    getHighSonglists,
     getSonglistHotCats,
     getCategories,
     getLyric,
     getRelatedSong,
     getRelatedSongList,
     getNewSongList,
+    getTopList,
 }

@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { observer } from 'mobx-react'
 
-import { Tag, Table } from 'antd'
+import { Table } from 'antd'
 import dayjs from 'dayjs'
 import { DownloadOutlined } from '@ant-design/icons'
 import { ColumnsType } from 'antd/es/table'

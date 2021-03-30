@@ -15,27 +15,27 @@ const songList = memo(() => {
     const [page, setPage] = useState(PAGE)
     const [highQuality, getRHighQualityFn] = useAsyncFn(songlistApi.getRHighQuality)
     const [hotcats, getHotCatsFn] = useAsyncFn(songlistApi.getSonglistHotCats)
-    const [playlists, getSongListsFn] = useAsyncFn(songlistApi.getSonglists)
+    const [playlists, getHighSongListsFn] = useAsyncFn(songlistApi.getHighSonglists)
     const [categories, getCategoriesFn] = useAsyncFn(songlistApi.getCategories)
     
     useEffect(() => {
         getRHighQualityFn(selectedCat)
         getHotCatsFn()
-        getSongListsFn({ cat: selectedCat, offset: page })
+        getHighSongListsFn({ cat: selectedCat, offset: page })
         getCategoriesFn()
     }, [])
     
     /* 切换类别，清空页码数 */
     const handleCatSelect = (cat:string) => {
         getRHighQualityFn(cat)
-        getSongListsFn({ cat, offset: (page - 1) * 100 })
+        getHighSongListsFn({ cat, offset: (page - 1) * 100 })
         setSelectedCat(cat)
         setPage(PAGE)
     }
 
     /* 改变页码 */
     const OnchangePageFn = (ipage: number) => {
-        getSongListsFn({ offset: (ipage - 1) * 100 })
+        getHighSongListsFn({ offset: (ipage - 1) * 100 })
         setPage(ipage)
     }
 
