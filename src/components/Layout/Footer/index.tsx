@@ -4,7 +4,8 @@ import { observer } from 'mobx-react'
 import { Image, Tooltip } from 'antd'
 
 import { DoubleLeftOutlined, DoubleRightOutlined, MenuFoldOutlined } from '@ant-design/icons'
-import useStores from '../../../hooks/useStores'
+import empty from '~/assets/image/empty.png'
+import useStores from '~/hooks/useStores'
 import ProgressBar from './ProgressBar'
 import Artist from './Artist'
 import AudioTimer from './AudioTimer'
@@ -41,26 +42,33 @@ const Footer = () => {
             </div>
             {/* 信息 */}
             <div className='footer-wrap'>
-                <div className='wrap-pic' onClick={changeLysicState}>
-                    <Image 
-                      src={`${currentSong.authorInfo.picUrl}?param=40y40`} 
-                      preview={false} 
-                      width={40} 
-                      height={40}
-                      placeholder
-                      loading='lazy' />
-                    {!showLyrics && <DoubleRightOutlined />}
-                    {showLyrics && <DoubleLeftOutlined />}
-                </div>
-                <div>
-                    <div className='wrap-info'>
-                        <span>{currentSong?.authorInfo.name}</span>
-                        <Artist name={currentSong?.authorInfo.author} id={currentSong?.authorInfo.id} />
-                    </div>
-                    <div className='wrap-time'>
-                        <AudioTimer sumTime={audioInfo?.duration} currentTime={audioInfo?.time} />
-                    </div>
-                </div>
+                {
+                   currentSong.musicId && (
+                   <>
+                       <div className='wrap-pic' onClick={changeLysicState}>
+                           <Image 
+                             src={`${currentSong.authorInfo.picUrl}?param=40y40`} 
+                             preview={false} 
+                             width={40} 
+                             height={40}
+                             fallback={empty}
+                             placeholder
+                             loading='lazy' />
+                           {!showLyrics && <DoubleRightOutlined />}
+                           {showLyrics && <DoubleLeftOutlined />}
+                       </div>
+                       <div>
+                           <div className='wrap-info'>
+                               <span>{currentSong?.authorInfo.name}</span>
+                               <Artist name={currentSong?.authorInfo.author} id={currentSong?.authorInfo.id} />
+                           </div>
+                           <div className='wrap-time'>
+                               <AudioTimer sumTime={audioInfo?.duration} currentTime={audioInfo?.time} />
+                           </div>
+                       </div>
+                   </>
+                )
+                }
             </div>
             {/* 播放 */}
             <div className='footer-ation'>
