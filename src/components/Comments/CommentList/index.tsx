@@ -4,7 +4,7 @@ import { useAsyncFn } from 'react-use'
 import recommentApi from '~/api/recomment'
 import { Comments } from '~/api/types/comment'
 import List from '../List'
-import Pagination from '../Pagination'
+import Pagination from '../../Pagination'
 
 interface IProps {
     id: number | string
@@ -30,9 +30,9 @@ const CommentList: React.FC<IProps> = memo(({
         }
         
         /* 改变页码 */
-    const OnchangePageFn = (page:number) => {
+    const OnchangePageFn = useCallback((page:number) => {
         onChangePage(page)
-    }
+    }, [total, id])
        
      return (
          <div>

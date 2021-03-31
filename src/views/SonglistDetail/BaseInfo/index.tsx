@@ -1,4 +1,4 @@
-import React, { Fragment, memo, useCallback } from 'react'
+import React, { Fragment, memo } from 'react'
 import { Link } from 'react-router-dom'
 import dayjs from 'dayjs'
 
@@ -7,7 +7,6 @@ import {
     Avatar, 
    } from 'antd'
 import useStores from '~/hooks/useStores'
-import { MusicType } from '~/store/music'
 import './index.less'
 import { ISonglist } from '~/api/types/songlist'
 import { formatCount } from '~/utils/format'
@@ -18,12 +17,10 @@ interface IProps {
 
 const SongLists: React.FC<IProps> = memo(({ data }) => {
     const { Music } = useStores()
-    const playAll = useCallback(
-        () => {
-            Music.playAll(data?.tracks)
-        },
-        [data],
-    )
+
+    const playAll = () => {
+        Music.playAll(data?.tracks)
+    }
     
     return (
         <div className='base-info'>

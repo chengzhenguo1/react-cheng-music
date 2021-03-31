@@ -1,5 +1,5 @@
 import React, { memo, useEffect, useCallback } from 'react'
-import { useAsyncFn, useAsync } from 'react-use'
+import { useAsyncFn } from 'react-use'
 import { useParams } from 'react-router-dom'
 
 import { Tabs } from 'antd'

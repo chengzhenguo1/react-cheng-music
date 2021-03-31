@@ -7,6 +7,7 @@ import zh from 'dayjs/locale/zh-cn.js'
 import { CaretRightOutlined } from '@ant-design/icons'
 import { Image, Table } from 'antd'
 import { ColumnsType } from 'antd/es/table'
+import { convertLegacyProps } from 'antd/lib/button/button'
 import useStores from '~/hooks/useStores'
 import songListApi from '~/api/songlist'
 import { ITopList, ITracks } from '~/api/types/songlist'
@@ -56,27 +57,24 @@ const Official: React.FC<IProps> = memo(({ data }) => {
         },
       ]
 
-      const onDoubleClick = useCallback(
-          async (e:React.MouseEvent<HTMLElement>) => {
-                e.stopPropagation()
-                await showConfirm()
-                getSongListFn(`${data.id}`).then((value) => {
-                    Music.playAll(value.tracks)
-                })
-          },
-          [columns, data, songList],
-      )
+    const onDoubleClick = useCallback(
+        async (e: React.MouseEvent<HTMLElement>) => {
+              e.stopPropagation()
+              await showConfirm()
+              getSongListFn(`${data.id}`).then(({ tracks }) => {
+                  Music.playAll(tracks)
+              })
+        },
+        [columns, data, songList],
+    )
 
-      const toSongLists = useCallback(
-          () => {
-            push(`/songlists/${data.id}`)
-          },
-          [data.id],
-      )
+    const toSongLists = (e: React.MouseEvent<HTMLElement>) => {
+        push(`/songlists/${data.id}`)
+      }
     
     return (
-        <div className='official-cover' onClick={toSongLists}>
-            <div className='official-info'>
+        <div className='official-cover'>
+            <div className='official-info' onClick={toSongLists}>
                 <Image 
                   src={`${data.coverImgUrl}?param=172y172`} 
                   width={172} 

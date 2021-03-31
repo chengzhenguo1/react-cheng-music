@@ -54,6 +54,7 @@ const Skin: React.FC<IProps> = memo(({ show, onClickAway }) => {
                     {Object.keys(ThemeColors).map((key) => (
                         <div 
                           className='skin-block'
+                          key={ThemeColors[key]}
                           style={{ backgroundColor: ThemeColors[key] }} />
                 ))}
                 </div>

@@ -5,7 +5,7 @@
     color: @text-color;
 
     .table-index {
-        color: #bababa;
+        color: var(--tip-color);
     }
 
     // 歌名
@@ -14,7 +14,7 @@
         align-items: center;
         .download-icon {
             font-size: 16px;
-            color: #bababa;
+            color: var(--tip-color);
             margin-right: 5px;
             &:hover {
                 color: @text-color;
@@ -48,9 +48,6 @@
     }
 
 
-    .ant-table {
-        font-size: .9em;
-    }
 
     .ant-table-tbody .ant-table-row:nth-child(odd) {
         background-color: #F9F9F9;

@@ -20,12 +20,9 @@ const Footer = () => {
     const { currentSong, audioInfo, showLyrics } = Music
     const [recordShow, setRecordShow] = useState(false)
 
-    const changeLysicState = useCallback(
-        () => {
+    const changeLysicState = () => {
             Music.toggleLyricsState()
-        },
-        [],
-    )
+    }
 
     const handleChangeRocord = useCallback(
         (flag:boolean) => {

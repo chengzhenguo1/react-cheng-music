@@ -1,5 +1,6 @@
 // user/user.ts
 import { makeAutoObservable, toJS } from 'mobx'
+import store from 'store'
 import { MODE } from '~/constants/play'
 import { parseMusicUrl } from '~/utils/parseUrl'
 import { IMusic, Track } from '~/api/types/songlist'
@@ -36,11 +37,11 @@ class Music {
         time: 0,
     }
     // 播放模式
-    playMode: MODE = MODE.PLAY_IN_ORDER
+    playMode: MODE = store.get('_playMode') || MODE.PLAY_IN_ORDER
     // 播放列表
-    playList: MusicType[] = []
+    playList: MusicType[] = store.get('_playList') || []
     // 播放历史记录
-    historyList: MusicType[] = []
+    historyList: MusicType[] = store.get('_historyList') || []
 
     constructor() {
         makeAutoObservable(this)
@@ -67,6 +68,7 @@ class Music {
     playAll<T extends Track | IMusic>(data?: T[]):void {
         /* 清空播放列表 */
         this.playList = []
+        store.remove('_playList')
 
         data?.forEach((item) => {
             const authorInfo = {
@@ -101,7 +103,7 @@ class Music {
     }
     // 设置历史记录
     setHistory():void {
-        if (this.currentSong.musicId === 0) return
+       if (this.currentSong.musicId === 0) return
        const data = this?.playList.find(({ musicId }) => musicId === this?.currentSong.musicId)
        this.setList('historyList', toJS(data))
     }
@@ -109,12 +111,15 @@ class Music {
         /* 查看列表中是否有当前歌曲 */
         const index = (this[key] as MusicType[])?.findIndex((item) => item?.musicId === data?.musicId)
         if (index === -1) {
+           const storeList = store.get(`_${key}`) || []
+           store.set(`_${key}`, storeList.concat(data))
            this[key] = this[key].concat(data)
         }
     }
     // 切换播放类型
     setPlayMode(type:MODE): void {
         this.playMode = type
+        store.set('_playMode', type)
     }
     // 设置播放信息
     setPlayInfo(info:AudioInfoType, controls: AudioControls):void {
@@ -133,9 +138,11 @@ class Music {
     clearPlayList(type: string):void {
         if (type === 'playList') {
             this.playList = []
+            store.remove('_playList')
             this.controls?.pause()
         } else {
             this.historyList = []
+            store.remove('_historyList')
         }
     }
     // 设置歌词页面的显示和隐藏

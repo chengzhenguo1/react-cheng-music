@@ -2,7 +2,7 @@ import react from 'react'
 import { IsongComment } from '~/api/types/comment'
 
 const useLikeUpdate = (commentData: IsongComment | undefined) => {
-    const onUpDateCidLiked = react.useCallback((index:number, liked:boolean, hot:boolean) => {
+    const onUpDateCidLiked = (index:number, liked:boolean, hot:boolean) => {
         const type = hot ? 'hotComments' : 'comments'
         const isAdd = liked ? 1 : -1
         if (commentData) {
@@ -10,7 +10,7 @@ const useLikeUpdate = (commentData: IsongComment | undefined) => {
             commentData[type][index].liked = liked
             commentData[type] = [...commentData[type]]
         }
-    }, [commentData])
+    }
 
     return {
         onUpDateCidLiked,

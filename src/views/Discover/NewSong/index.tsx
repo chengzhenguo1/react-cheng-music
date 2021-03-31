@@ -37,12 +37,13 @@ const NewSong: React.FC = () => {
         },
         [songList, getSongListFn],
     )
+    
     return (
         <div className='new-song'>
             <div className='new-header'>
-                <div className='new-tabs'>
+                <div className='tabs'>
                     {typeList.map((item) => (
-                        <div className={cn('tabs-tab', item.type === tab && 'active')} key={item.type} onClick={() => setTab(item.type)}>
+                        <div className={cn('tabs-item', item.type === tab && 'active')} key={item.type} onClick={() => setTab(item.type)}>
                             {item.title}
                         </div>
                     ))}

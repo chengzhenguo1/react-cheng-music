@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useAsyncFn } from 'react-use'
 import { observer } from 'mobx-react'
 
@@ -22,12 +22,9 @@ const RecommendDaily = () => {
         }
     }, [isLogin])
 
-    const playAll = useCallback(
-        () => {
-            Music.playAll(state.value)
-        },
-        [state, isLogin],
-    )
+    const playAll = () => {
+        Music.playAll(state.value)
+    }
 
     /* 打开登录框 */
     const handleLoginDiagio = () => {

@@ -12,7 +12,7 @@ class User {
 
     constructor() {
         makeAutoObservable(this)
-        const user = store.get('user')
+        const user = store.get('_user')
         if (user) {
             this.user = user
             this.isLogin = true
@@ -26,14 +26,14 @@ class User {
     // 保存登录信息
     loginUser(data:ILoginResult):void {
         this.user = data
-        store.set('user', this.user)
+        store.set('_user', this.user)
         this.isLogin = true
         this.showLoginDialog = false
     }
 
     logoutUser():void {
         this.user = {}
-        store.remove('user')
+        store.remove('_user')
         this.isLogin = false
     }
 }

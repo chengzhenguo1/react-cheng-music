@@ -33,7 +33,7 @@ const Silder = () => {
         (e) => {
             if (e.key !== filterPath(pathname)) push(e.key)
         },
-    [pathname],
+        [pathname],
     )
 
     return (

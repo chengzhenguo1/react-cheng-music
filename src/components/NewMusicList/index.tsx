@@ -4,6 +4,7 @@ import { observer } from 'mobx-react'
 import dayjs from 'dayjs'
 
 import { Table, Image } from 'antd'
+import { CaretRightOutlined } from '@ant-design/icons'
 import { ColumnsType } from 'antd/es/table'
 import { fommatArtist } from '~/utils/format'
 import { IMusic } from '~/api/types/songlist'
@@ -44,13 +45,16 @@ const NewMusicList: React.FC<IProps> = ({ data }) => {
       width: '45%',
       ellipsis: true,
       render: (value, record, index: number) => (
-          <div className='music-title new-list-tile'>
-              <Image 
-                src={`${record.album.picUrl}?param=60y60`} 
-                width={60}
-                height={60} 
-                preview={false} 
-                fallback={emptyImg} />
+          <div className='music-title new-list-title'>
+              <div className='music-pic'>
+                  <Image 
+                    src={`${record.album.picUrl}?param=60y60`} 
+                    width={60}
+                    height={60}
+                    preview={false}
+                    fallback={emptyImg} />
+                  <div className='play-icon'><CaretRightOutlined /></div>
+              </div>
               <span className='music-name' title={record?.name}>{record?.name}</span>
               {record?.fee === 1 && <span className='icon-vip'>vip</span>}
           </div>

@@ -25,6 +25,7 @@ import Live from '../views/Live'
 import LocalMusic from '../views/LocalMusic'
 import PrivateFm from '../views/PrivateFm'
 import Video from '../views/Video'
+import Search from '../views/Search'
 
 import NotFound from '../views/NotFound'
 
@@ -122,6 +123,12 @@ const routes: RouterConfig[] = [
         path: '/songlists/:id',
         title: '推荐歌单',
         component: SonglistDetail,
+    },
+    {
+        path: '/search/:keywords',
+        title: '搜索结果页',
+        component: Search,
+        exact: true,
     },
    {
        path: '*',

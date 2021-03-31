@@ -25,10 +25,16 @@
     /* 灰色文字 */
     --text-color-gray: #5d5d5d;
 
+    /* 提示色 */
+    --tip-color: #bababa;
+
+
     /* 文字副主题色 */
-    --text-color: rgba(0, 0, 0, 0.9);
+    --text-color: rgba(0, 0, 0, 0.8);
     /* 选中后颜色 */
     --text-active-color: #000;
+
+
 
     /* 导航条背景色 */
     --scroll-color: #CFCFD1;

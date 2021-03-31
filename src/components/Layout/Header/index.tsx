@@ -4,7 +4,7 @@ import './index.less'
 
 import Logo from './Logo'
 import BackForward from './BackForward'
-import Search from './Search'
+import SearchPut from './SearchPut'
 import NavBar from './NavBar'
 import LoginDialog from './LoginDialog'
 
@@ -14,7 +14,7 @@ const Header = memo(() => (
         <div className='count'>
             <div className='count-left'>
                 <BackForward />
-                <Search />
+                <SearchPut />
             </div>
             <LoginDialog />
             <NavBar />

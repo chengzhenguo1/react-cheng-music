@@ -7,7 +7,7 @@ import { message } from 'antd'
 import useStores from '../hooks/useStores'
 
 import { MODE } from '../constants/play'
-import { MusicType } from '../store/music'
+import { MusicType } from '../store/music/type'
 import routes from '../router/index'
 import Layout from '../components/Layout'
 import MusicDetail from '../components/MusicDetail'

@@ -3,7 +3,7 @@ import { useAsyncFn } from 'react-use'
 
 import HighQuality from './HighQuality'
 import Categories from './Categories'
-import MyPagination from '../../../components/Comments/Pagination'
+import MyPagination from '../../../components/Pagination'
 import Cover from '../../../components/Cover'
 import songlistApi from '../../../api/songlist'
 import './index.less'

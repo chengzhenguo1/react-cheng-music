@@ -9,3 +9,18 @@
     background-color: var(--primary-color);
     cursor: pointer;
 }
+
+.tabs {
+    display: flex;
+
+    .tabs-item {
+        margin-right: 25px;
+        cursor: pointer;
+        color: var(--text-color-gray);
+
+        &.active {
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+    }
+}

@@ -6,28 +6,28 @@ import { Table } from 'antd'
 import dayjs from 'dayjs'
 import { DownloadOutlined } from '@ant-design/icons'
 import { ColumnsType } from 'antd/es/table'
-import { fommatArtist } from '~/utils/format'
-import { Track } from '~/api/types/songlist'
-import useStores from '~/hooks/useStores'
-import './index.less'
 import { musicUrl } from '~/constants/url'
+import { fommatArtist } from '~/utils/format'
+import { IMusic } from '~/api/types/songlist'
+import useStores from '~/hooks/useStores'
 
 interface IProps {
-    data?: Track[]
+    data?: IMusic[]
 }
 
-  const MusicList: React.FC<IProps> = ({ data }) => {
+  const ResList: React.FC<IProps> = ({ data }) => {
   const { Music } = useStores()
-  const onDoubleClick = (e:Track) => {
-   Music.playMusic(e.id, e.dt / 1000, {
-    picUrl: e.al.picUrl, 
+
+  const onDoubleClick = (e:IMusic) => {
+   Music.playMusic(e.id, e.duration / 1000, {
+    picUrl: e.album.artist?.img1v1Url || '', 
     name: e.name, 
-    id: e.al.id, 
-    author: fommatArtist(e.ar),
+    id: e.album.id, 
+    author: fommatArtist(e.artists),
   })
  }
 
- const columns: ColumnsType<Track> = [
+ const columns: ColumnsType<IMusic> = [
     {
       dataIndex: 'index',
       title: '',
@@ -58,8 +58,8 @@ interface IProps {
       key: 'ar',
       width: '15%',
       ellipsis: true,
-      render: (value, { ar }, index: number) => (
-        ar.map((item) => <Link to='/' key={item.name} className='text-gray'>{`${item.name}`}</Link>)
+      render: (value, { artists }, index: number) => (
+        artists.map((item) => <Link to='/' key={item.name} className='text-gray'>{`${item.name}`}</Link>)
         ),
     },
     {
@@ -68,26 +68,27 @@ interface IProps {
       dataIndex: ['al', 'name'],
       width: '20%',
       ellipsis: true,
-      render: (value, { al }, index: number) => <Link to='/' className='text-gray'>{al.name}</Link>,
+      render: (value, { album }, index: number) => <Link to='/' className='text-gray'>{album.name}</Link>,
     },
     {
         title: '时长',
         key: 'dt',
         width: '10%',
-        render: (value, { dt }, index: number) => <span className='text-gray'>{dayjs(dt).format('mm:ss')}</span>,
+        render: (value, { duration }, index: number) => <span className='text-gray'>{dayjs(duration).format('mm:ss')}</span>,
     },
-  ];
+  ]
+
    return (
-       <Table<Track> 
+       <Table<IMusic> 
          rowKey='id'
          columns={columns} 
          dataSource={data} 
-         pagination={false} 
-         className='music-table'  
+         className='music-table'
+         pagination={false}  
          onRow={(record) => ({
          onDoubleClick: (event) => { onDoubleClick(record) },
         })} />
 )
- }
+}
 
-export default observer(MusicList)
+export default observer(ResList)
