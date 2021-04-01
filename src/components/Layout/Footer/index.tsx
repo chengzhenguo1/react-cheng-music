@@ -40,7 +40,7 @@ const Footer = () => {
             {/* 信息 */}
             <div className='footer-wrap'>
                 {
-                   currentSong.musicId && (
+                   currentSong.musicId !== -1 && (
                    <>
                        <div className='wrap-pic' onClick={changeLysicState}>
                            <Image 

@@ -33,13 +33,13 @@ const PlayAtions: React.FC = () => {
 
     return (
         <div className='play-ations'>
-            <StepBackwardOutlined onClick={() => play()} />
+            <StepBackwardOutlined onClick={() => play(true)} />
             <div className='play-control'>
                 {Music.audioInfo.paused
                 ? <CaretRightOutlined onClick={(e) => togglePlayStatus(true)} /> 
                 : <PauseOutlined onClick={(e) => togglePlayStatus(false)} />}
             </div>
-            <StepForwardOutlined onClick={() => play(true)} />
+            <StepForwardOutlined onClick={() => play(false)} />
         </div>
 )
 }

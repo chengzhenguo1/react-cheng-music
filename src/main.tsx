@@ -1,7 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import './utils/autoRem.js'
 import '~/styles/variables.css'
 import './assets/normalize.css'
 import './styles/global.less'

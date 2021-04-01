@@ -8,7 +8,6 @@ import {
     CustomerServiceFilled,
 } from '@ant-design/icons'
 
-import Layout from 'antd/lib/layout/layout'
 import Discover from '../views/Discover/index'
 import NewSong from '../views/Discover/NewSong'
 import Ranking from '../views/Discover/Ranking'
@@ -17,23 +16,24 @@ import Singer from '../views/Discover/Singer'
 import SongList from '../views/Discover/SongList'
 import Daily from '../views/Discover/Daily'
 
-import SonglistDetail from '../views/SonglistDetail/index'
+const SonglistDetail = React.lazy(() => import('../views/SonglistDetail'))
 
-import Download from '../views/Download'
-import Friend from '../views/Friend'
-import Live from '../views/Live'
-import LocalMusic from '../views/LocalMusic'
-import PrivateFm from '../views/PrivateFm'
-import Video from '../views/Video'
-import Search from '../views/Search'
+const Download = React.lazy(() => import('../views/Download'))
+const Friend = React.lazy(() => import('../views/Friend'))
+const Live = React.lazy(() => import('../views/Live'))
+const LocalMusic = React.lazy(() => import('../views/LocalMusic'))
+const PrivateFm = React.lazy(() => import('../views/PrivateFm'))
 
-import NotFound from '../views/NotFound'
+const Video = React.lazy(() => import('../views/Video'))
+const Search = React.lazy(() => import('../views/Search'))
+
+const NotFound = React.lazy(() => import('../views/NotFound'))
 
 // 路由配置
 export interface RouterConfig {
     path: string
     exact?: boolean
-    component: any
+    component?: any
     title: string
     Icon?: React.FC
     render?: ()=> React.ReactNode
@@ -115,13 +115,12 @@ const routes: RouterConfig[] = [
         path: '/',
         exact: true,
         title: '首页',
-        component: Layout,
         render: () => (<Redirect to='/discover' />),
     },
     ...menuRoutes,
     {
         path: '/songlists/:id',
-        title: '推荐歌单',
+        title: '歌单',
         component: SonglistDetail,
     },
     {

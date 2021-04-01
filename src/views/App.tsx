@@ -1,9 +1,10 @@
-import React, { useCallback, useEffect } from 'react'
+import React, { useCallback, useEffect, Suspense } from 'react'
+import { message } from 'antd'
 import { useAudio } from 'react-use'
 import { observer } from 'mobx-react'
 import { renderRoutes } from 'react-router-config'
 import { HashRouter, Switch } from 'react-router-dom'
-import { message } from 'antd'
+
 import useStores from '../hooks/useStores'
 
 import { MODE } from '../constants/play'
@@ -15,15 +16,15 @@ import MusicDetail from '../components/MusicDetail'
 const App: React.FC = function App() {
     const { Music } = useStores()
     const {
- playMode, currentSong, playList,
-} = Music
+    playMode, currentSong, playList,
+    } = Music
     const [audio, state, controls, ref] = useAudio({
         src: currentSong.url,
         autoPlay: true,
         onEnded: () => playNextMusic(),
         onPlay: () => setMusicHistoryList(),
         onError: () => {
-            if (currentSong.musicId !== 0) { 
+            if (currentSong.musicId !== -1) { 
                         message.warning('无版权哦！')
                         if (playMode === MODE.SINGLE_CYCLE) {
                             return
@@ -32,6 +33,16 @@ const App: React.FC = function App() {
                     }
             },
       })
+      
+    useEffect(() => {
+        Music.setPlayInfo(state, controls)
+    }, [state, ref])
+    
+    useEffect(() => {
+        if (playList.length > 0) {
+            Music.playMusic(playList[0].musicId, playList[0].time || 0, playList[0].authorInfo)
+        }
+    }, [])
 
     const playNextMusic = useCallback(() => {
         switch (playMode) {
@@ -69,18 +80,16 @@ const App: React.FC = function App() {
         [ref, audio, currentSong],
     )
 
-    useEffect(() => {
-        Music.setPlayInfo(state, controls)
-    }, [state, ref])
-
   return (
       <HashRouter>
           <Layout>
               {audio}
               <MusicDetail />
-              <Switch>
-                  {renderRoutes(routes, { routes })}
-              </Switch>
+              <Suspense fallback={null}>
+                  <Switch>
+                      {renderRoutes(routes, { routes })}
+                  </Switch>
+              </Suspense>
           </Layout>
       </HashRouter>
   )

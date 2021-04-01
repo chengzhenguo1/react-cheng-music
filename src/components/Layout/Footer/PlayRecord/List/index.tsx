@@ -34,10 +34,10 @@ const List: React.FC<IProps> = ({ data, handleDoubleClick }) => {
            render: (value, item, index: number) => (
                <div className='music-title'>
                    <span 
-                     className={cn('music-name', item?.musicId === currentSong.musicId && 'active')} 
-                     title={item?.authorInfo.name}>
-                       {item?.musicId === currentSong.musicId && <PauseOutlined />}
-                       {item?.authorInfo.name}
+                     className={cn('music-name', item?.musicId === currentSong?.musicId && 'active')} 
+                     title={item?.authorInfo?.name}>
+                       {item?.musicId === currentSong?.musicId && <PauseOutlined />}
+                       {item?.authorInfo?.name}
                    </span>
                </div>
            ),
@@ -49,7 +49,7 @@ const List: React.FC<IProps> = ({ data, handleDoubleClick }) => {
            ellipsis: true,
            render: (value, item, index: number) => (
                <span className={cn('music-author', item?.musicId === currentSong?.musicId && 'active')}>
-                   {item?.authorInfo.author}
+                   {item?.authorInfo?.author}
                </span>
              ),
          },

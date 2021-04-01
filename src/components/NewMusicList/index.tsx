@@ -81,6 +81,7 @@ const NewMusicList: React.FC<IProps> = ({ data }) => {
         title: '',
         key: 'dt',
         width: '10%',
+        ellipsis: true,
         render: (value, { duration }, index: number) => <span className='text-gray'>{dayjs(duration).format('mm:ss')}</span>,
     },
   ];

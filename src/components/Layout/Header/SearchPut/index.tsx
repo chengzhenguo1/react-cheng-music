@@ -19,6 +19,7 @@ import './index.less'
     const { push } = useHistory()
     const { Search } = useStores()
     const { searchHistoryList } = Search
+
     const [hotList, getSearchHotListFn] = useAsyncFn(serachApi.getSearchHot)
     const [suggestWord, suggestWordFn] = useAsyncFn(serachApi.getSuggestWord)
     
@@ -91,7 +92,7 @@ import './index.less'
                                     </div>
                                     <div className='history-words'>
                                         {searchHistoryList.map((name) => (
-                                            <div key={name} className='history-word'>
+                                            <div key={name} className='history-word' onClick={() => onSearchWords(name)}>
                                                 {name}
                                             </div>
                                         ))}

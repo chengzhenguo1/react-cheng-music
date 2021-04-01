@@ -160,6 +160,7 @@ export interface Track {
     type?: string
   }
   export interface IMusic {
+    [x: string]: any;
     album: IAlbum
     alias?: string[]
     artists: IArtist[]

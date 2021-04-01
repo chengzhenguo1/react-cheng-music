@@ -16,7 +16,7 @@ const initAuthor = {
 }
 
 const initSong: MusicType = {
-    musicId: 0,
+    musicId: -1,
     url: '', 
     authorInfo: initAuthor,
     time: 0,

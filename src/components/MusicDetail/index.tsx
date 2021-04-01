@@ -54,7 +54,7 @@ const MusicDetail = () => {
                         </div>
                         <div className='detail-h-circle'>
                             <div className={cn('circle-cover', !audioInfo.paused && 'play')}>
-                                <Image src={`${currentSong.authorInfo.picUrl}?params=190y190`} preview={false} />
+                                <Image src={`${currentSong?.authorInfo?.picUrl}?params=190y190`} preview={false} />
                             </div>
                         </div>
                     </div>
@@ -62,11 +62,11 @@ const MusicDetail = () => {
                         {lyric
                         && (
                         <Lyric 
-                          title={currentSong.authorInfo.name} 
-                          artist={currentSong.authorInfo.author}
-                          time={audioInfo.time}
+                          title={currentSong?.authorInfo?.name} 
+                          artist={currentSong?.authorInfo?.author}
+                          time={audioInfo?.time}
                           lines={formatLyric(lyric?.lrc?.lyric)}
-                          paused={audioInfo.paused} />
+                          paused={audioInfo?.paused} />
                         )}
                     </div>
                 </div>

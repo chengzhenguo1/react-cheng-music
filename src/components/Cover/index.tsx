@@ -22,7 +22,11 @@ const Cover: React.FC<IProps> = memo(({
     <div className='cover-card'>
         <Link to={`/${path}/${pid}`}>
             <div className='image-cover'>
-                <Image src={picUrl || ''} placeholder={<Spin />} preview={false} loading='lazy' />
+                <Image 
+                  src={`${picUrl}?param=211y211`} 
+                  placeholder={<Spin />} 
+                  preview={false} 
+                  loading='lazy' />
                 {/* 播放按钮 */}
                 <i className='play-btn'><CaretRightOutlined style={{ color: 'var(--primary-color)' }} /></i>
             </div>

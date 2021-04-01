@@ -70,7 +70,7 @@ const SongLists: React.FC<IProps> = memo(({ data }) => {
                 </div>
                 <div className='info-des'>
                     <span>简介：</span>
-                    <div className='base-color base-info'>                    
+                    <div className='base-color info-text'>                    
                         {data?.description}
                     </div>
                 </div>

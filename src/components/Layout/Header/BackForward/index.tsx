@@ -1,13 +1,17 @@
 import React, { memo } from 'react'
 import { useHistory } from 'react-router-dom'
+import { LeftOutlined, RightOutlined } from '@ant-design/icons'
+import useStores from '~/hooks/useStores'
 
 import './index.less'
 
-import { LeftOutlined, RightOutlined } from '@ant-design/icons'
-
 const BcakForWard = memo(() => {
     const history = useHistory()
-    const handleGoBack = () => history.goBack()
+    const { Music } = useStores()
+    const handleGoBack = () => {
+        Music.toggleLyricsState(false)
+        history.goBack()
+    }
     const handleForward = () => history.goForward()
     return (
         <div className='back-forward'>

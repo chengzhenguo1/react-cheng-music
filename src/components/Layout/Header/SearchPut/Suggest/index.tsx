@@ -1,4 +1,5 @@
 import React, { Fragment, memo } from 'react'
+import { useHistory } from 'react-router-dom'
 import Icon, {
  AudioFilled, UserOutlined, SaveOutlined, DotChartOutlined,
 } from '@ant-design/icons'
@@ -47,7 +48,7 @@ const Types:IDictionary<SearchType> = {
 
 const Suggest: React.FC<IProps> = memo(({ data, keywords, onSearchWords }) => {
     const { Music } = useStores()
-
+    const { push } = useHistory()
     const playMusic = (item: IMusic) => {
         if (item.fee) {
             Music.playMusic(item.id, item.duration / 1000, {
@@ -56,6 +57,9 @@ const Suggest: React.FC<IProps> = memo(({ data, keywords, onSearchWords }) => {
                 id: item.album.id, 
                 author: fommatArtist(item.artists),
             })
+        }
+        if (item?.bookCount) {
+            push(`/songlists/${item.id}`)
         }
     }
 

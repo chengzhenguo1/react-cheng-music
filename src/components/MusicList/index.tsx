@@ -9,14 +9,14 @@ import { ColumnsType } from 'antd/es/table'
 import { fommatArtist } from '~/utils/format'
 import { Track } from '~/api/types/songlist'
 import useStores from '~/hooks/useStores'
-import './index.less'
 import { musicUrl } from '~/constants/url'
+import './index.less'
 
 interface IProps {
     data?: Track[]
 }
 
-  const MusicList: React.FC<IProps> = ({ data }) => {
+const MusicList: React.FC<IProps> = ({ data }) => {
   const { Music } = useStores()
   const onDoubleClick = (e:Track) => {
    Music.playMusic(e.id, e.dt / 1000, {

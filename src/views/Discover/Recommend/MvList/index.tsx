@@ -14,7 +14,7 @@ interface IProps{
 const MvItem: React.FC<IProps> = memo(({ data }) => (
     <div className='mv-list'>
         {data?.map((item) => (
-            <div className='mv-item'>
+            <div className='mv-item' key={item.id}>
                 <div className='mv-pic'>
                     <Image 
                       src={`${item.picUrl}?param=280y155`} 

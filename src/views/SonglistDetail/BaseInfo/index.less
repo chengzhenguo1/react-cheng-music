@@ -1,3 +1,5 @@
+@import url('~/styles/global.less');
+
 .base-info {
     display: flex;
 
@@ -42,7 +44,7 @@
             margin: 14px 0;
 
             a {
-                color:#769acb;
+                color: #769acb;
                 font-size: 12px;
                 margin: 0 5px;
             }
@@ -51,31 +53,38 @@
 
         // 标签
         .info-tags {
-            
+
             a {
-                color:#769acb;
+                color: #769acb;
                 position: relative;
                 padding: 0 5px;
-                &:first-of-type{
+
+                &:first-of-type {
                     padding-left: 0;
                 }
             }
+
             i:not(:last-child) {
                 display: block !important;
                 font-size: 12px;
             }
         }
-        .info-count div:first-of-type{
+
+        .info-count div:first-of-type {
             margin-right: 5px;
         }
-        
+
         /* 介绍 */
         .info-des {
             span {
                 align-self: flex-start;
             }
+
             div {
                 flex: 1;
+            }
+            .info-text {
+                .article-container(4);
             }
         }
 

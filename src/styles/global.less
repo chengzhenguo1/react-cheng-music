@@ -1,3 +1,4 @@
+/* 播放按钮 */
 .play-all {
     margin-bottom: 15px;
     text-align: center;
@@ -10,6 +11,7 @@
     cursor: pointer;
 }
 
+/* tab页样式 */
 .tabs {
     display: flex;
 
@@ -24,3 +26,16 @@
         }
     }
 }
+
+/* 多行显示省略号 */
+.article-container(@line: 2) {
+    display: -webkit-box;
+    word-break: break-all;
+    -webkit-box-orient: vertical;
+    /* 需要显示的行数 */
+    -webkit-line-clamp: @line; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+

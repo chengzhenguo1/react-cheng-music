@@ -41,7 +41,7 @@ const RelatedList: React.FC<Iprops> = ({ data, type }) => {
     }, [type, data])
     
     return (
-        <div className='related-item' onClick={() => handleToPage(data)}>
+        <div className='related-item' onClick={() => handleToPage(data as IMusic)}>
             <div className='related-pic'>
                 {/* 播放图标 */}
                 {type === RELATED_TYPE.SONG && (
