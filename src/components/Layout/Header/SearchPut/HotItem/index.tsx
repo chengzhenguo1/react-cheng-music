@@ -1,18 +1,16 @@
 import React, { memo } from 'react'
-import { useHistory } from 'react-router-dom'
 
 import './index.less'
 
 interface IProps{
     name: string
     index: number
+    onSearchWords: (keywords:string)=>void
 }
 
-const HotItem: React.FC<IProps> = memo(({ name, index }) => {
-    const { push } = useHistory()
-
+const HotItem: React.FC<IProps> = memo(({ name, index, onSearchWords }) => {
     const toSearchPath = () => {
-        push(`/search/${name}`)
+        onSearchWords(name)
     }
 
     return (

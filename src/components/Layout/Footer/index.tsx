@@ -4,7 +4,7 @@ import { observer } from 'mobx-react'
 import { Image, Tooltip } from 'antd'
 
 import { DoubleLeftOutlined, DoubleRightOutlined, MenuFoldOutlined } from '@ant-design/icons'
-import empty from '~/assets/image/empty.png'
+import defaultPic from '~/assets/image/defaultPic.png'
 import useStores from '~/hooks/useStores'
 import ProgressBar from './ProgressBar'
 import Artist from './Artist'
@@ -48,7 +48,7 @@ const Footer = () => {
                              preview={false} 
                              width={40} 
                              height={40}
-                             fallback={empty}
+                             fallback={defaultPic}
                              placeholder
                              loading='lazy' />
                            {!showLyrics && <DoubleRightOutlined />}

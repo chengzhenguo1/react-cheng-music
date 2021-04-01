@@ -1,12 +1,10 @@
 import { searchCount } from '~/constants/pageCount'
 import axios from '~/utils/axios'
-import { ISearchHot, SearchType } from './types/search'
-import {
- IMusic, IArtist, IAlbum, ISonglist, UserInfo,
-} from './types/songlist'
+import { ISearchHot, SearchType, ISerachSuggestWordRes } from './types/search'
 
 type GetSearchHotFn = ()=> Promise<ISearchHot[]>
 type GetSearchResultFn = (keywords: string, type?:SearchType, limit?:number, offset?:number)=> Promise<any>
+type GetSuggestWordFn = (keywords:string)=> Promise<ISerachSuggestWordRes>
 
 /* 获取热门搜索列表 */
 const getSearchHot: GetSearchHotFn = async () => {
@@ -17,7 +15,7 @@ const getSearchHot: GetSearchHotFn = async () => {
 }
 
 /* 获取搜索结果 */
-const getSerachResult: GetSearchResultFn = async (keywords: string, type?:SearchType, limit = searchCount, offset = 0) => {
+const getSerachResult: GetSearchResultFn = async (keywords, type?, limit = searchCount, offset = 0) => {
     const res = await axios({
         url: '/search',
         params: {
@@ -30,7 +28,19 @@ const getSerachResult: GetSearchResultFn = async (keywords: string, type?:Search
     return res.result
 }
 
+/* 获取联想词匹配结果 */
+const getSuggestWord: GetSuggestWordFn = async (keywords) => {
+    const res = await axios({
+        url: '/search/suggest',
+        params: {
+            keywords,
+        },
+    })
+    return res.result
+}
+
 export default {
     getSearchHot,
     getSerachResult,
+    getSuggestWord,
 }

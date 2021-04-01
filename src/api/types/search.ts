@@ -1,3 +1,4 @@
+import { IArtist, IAlbum, ISonglist } from '../types/songlist'
 // eslint-disable-next-line no-shadow
 export enum SearchType{
     SINGLE = 1, // 单曲
@@ -17,4 +18,11 @@ export interface ITab {
 export interface ISearchHot {
     first: string
     second: number
+}
+
+export interface ISerachSuggestWordRes {
+    albums:IAlbum[]
+    artists:IArtist[]
+    order:string[]
+    songs: ISonglist[]
 }
