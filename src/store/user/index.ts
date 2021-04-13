@@ -3,11 +3,20 @@ import { makeAutoObservable } from 'mobx'
 import store from 'store'
 import { ILoginResult } from '~/api/types/auth'
 
-class User {
+interface IUser {
+    showLoginDialog: boolean
+    user: ILoginResult
+    isLogin: boolean
+    changeDiaLogShow: (isShow: boolean)=>void
+    loginUser: (data: ILoginResult)=>void
+    logoutUser: ()=>void
+}
+
+class User implements IUser {
     // 登录框的显示与隐藏
     showLoginDialog = false
     // 用户信息
-    user:ILoginResult = {}
+    user = {}
     isLogin = false
 
     constructor() {

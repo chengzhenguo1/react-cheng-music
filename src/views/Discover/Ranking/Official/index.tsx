@@ -76,9 +76,9 @@ const Official: React.FC<IProps> = memo(({ data }) => {
         <div className='official-cover'>
             <div className='official-info' onClick={toSongLists}>
                 <Image 
-                  src={`${data.coverImgUrl}?param=172y172`} 
-                  width={172} 
-                  height={172}
+                  src={`${data.coverImgUrl}?param=174y174`} 
+                  width={174} 
+                  height={174}
                   preview={false}
                   fallback={EmptyImg} />
                 <i className='official-update'>

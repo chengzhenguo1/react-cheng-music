@@ -4,6 +4,8 @@ import { SERVER } from '../constants/server'
 
 const TIMEOUT = 40000
 
+const serverAddr = import.meta.env.MODE === 'development' ? '' : 'music'
+
 interface IDictionary<T> {
     [key: string]: T
 }
@@ -15,7 +17,7 @@ const MIME_TYPE: IDictionary<ResponseType> = {
 
 const createInstance = () => {
     const instance = axios.create({
-        baseURL: SERVER,
+        baseURL: SERVER + serverAddr,
         withCredentials: true,
         timeout: TIMEOUT,
         responseType: MIME_TYPE.JSON,

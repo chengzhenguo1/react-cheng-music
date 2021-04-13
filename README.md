@@ -4,7 +4,7 @@ React Cheng Music——一个基于React、TypeScript、Vite的高仿网易云ma
 初学者用来练习react所编写的一个项目，参考了[uniquemo/react-netease-music: React Netease Music——一个基于React、TypeScript的高仿网易云mac客户端🎵播放器。 (github.com)](https://github.com/uniquemo/react-netease-music)大佬的项目编写的。React和Ts是初学者，所以有些地方代码的编写并不正规。
 
 ## 项目体验地址
-暂无
+[🍊音乐 (icloudmusic.top)](http://icloudmusic.top)
 
 ## 功能列表
 - [x] 登录/登出（目前仅支持手机密码登录）

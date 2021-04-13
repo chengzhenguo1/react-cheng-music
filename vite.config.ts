@@ -6,6 +6,7 @@ import vitePluginImp from 'vite-plugin-imp'
 const env = process.argv[process.argv.length - 1]
 
 export default defineConfig({
+  /* base: '/music', */
   resolve: {
     // 路径别名
     alias: [
@@ -14,7 +15,7 @@ export default defineConfig({
   },
   plugins: [
     reactRefresh(),
-     vitePluginImp({
+     /* vitePluginImp({
       // 按需引入
       libList: [
         {
@@ -22,7 +23,7 @@ export default defineConfig({
           style: (name) => `antd/lib/${name}/style/index.less`,
         },
       ],
-    }),
+    }), */
   ],
   css: {
     preprocessorOptions: {

@@ -22,26 +22,41 @@ const initSong: MusicType = {
     time: 0,
 }
 
-class Music {
+interface IMusicStore {
+    showLyrics: boolean
+    controls: AudioControls | null
+    currentSong: MusicType
+    audioInfo: AudioInfoType
+    playMode: MODE
+    playList: MusicType[] 
+    historyList: MusicType[]
+    playMusic: (musicId: number, time:number, authorInfo:AuthorType)=> void
+    playListMusic: (index:number)=> void
+    playAll: <T extends Track | IMusic>(data?: T[])=> void
+    setMusicState: (flag:boolean) => void
+    setHistory: ()=>void
+}
+
+class Music implements IMusicStore {
     // 歌词的显示与隐藏
     showLyrics = false
     // 
-    controls: AudioControls | null = null
+    controls = null
     // 当前播放歌曲
-    currentSong: MusicType = initSong
+    currentSong = initSong
     // 歌曲信息
-    audioInfo: AudioInfoType = {
+    audioInfo = {
         duration: 0,
         muted: false,
         paused: true,
         time: 0,
     }
     // 播放模式
-    playMode: MODE = store.get('_playMode') || MODE.PLAY_IN_ORDER
+    playMode = store.get('_playMode') || MODE.PLAY_IN_ORDER
     // 播放列表
-    playList: MusicType[] = store.get('_playList') || []
+    playList = store.get('_playList') || []
     // 播放历史记录
-    historyList: MusicType[] = store.get('_historyList') || []
+    historyList = store.get('_historyList') || []
 
     constructor() {
         makeAutoObservable(this)

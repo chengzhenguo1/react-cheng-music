@@ -13,6 +13,7 @@ const PAGE = 1
 const songList = memo(() => {
     const [selectedCat, setSelectedCat] = useState('全部')
     const [page, setPage] = useState(PAGE)
+    
     const [highQuality, getRHighQualityFn] = useAsyncFn(songlistApi.getRHighQuality)
     const [hotcats, getHotCatsFn] = useAsyncFn(songlistApi.getSonglistHotCats)
     const [playlists, getHighSongListsFn] = useAsyncFn(songlistApi.getHighSonglists)
